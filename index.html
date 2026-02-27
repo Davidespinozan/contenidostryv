@@ -3,321 +3,357 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STRYV — Instagram Posts</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>STRYV — Instagram Content Pack</title>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-  :root{--bg:#0D1117;--bg2:#171C24;--text:#EAF0EE;--sub:rgba(234,240,238,.58);--muted:rgba(234,240,238,.32);--teal:#4ECDC4;--border:rgba(108,143,138,.18)}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 20px}
-  h1.pt{text-align:center;font-size:14px;font-family:'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:12px}
-  p.ps{text-align:center;font-size:13px;color:#444;margin-bottom:60px}
-  .sec{margin-bottom:80px}
-  .lbl{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
-  .desc{font-size:13px;color:#666;margin-bottom:24px;max-width:600px}
-  .car{display:flex;gap:16px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-  .car::-webkit-scrollbar{height:4px}.car::-webkit-scrollbar-track{background:#111}.car::-webkit-scrollbar-thumb{background:#333;border-radius:4px}
-  .sw{flex:0 0 auto;scroll-snap-align:start;display:flex;flex-direction:column;gap:8px}
-  .sl{width:400px;height:500px;border-radius:8px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.06)}
-  .db{background:var(--bg2);border:1px solid rgba(78,205,196,.25);border-radius:6px;color:var(--teal);font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.08em;padding:8px 16px;cursor:pointer;transition:background .15s;text-align:center}
-  .db:hover{background:rgba(78,205,196,.1);border-color:var(--teal)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 20px}
+::selection{background:#4ECDC4;color:#0D1117}
 
-  .si{width:1080px;height:1350px;transform:scale(0.3704);transform-origin:top left;position:relative;overflow:hidden}
-  .sbg{position:absolute;inset:0;background:var(--bg)}
-  .dg{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(78,205,196,.1) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 70% 55% at 50% 25%,black 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 70% 55% at 50% 25%,black 20%,transparent 70%);z-index:1}
-  .gl{position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(78,205,196,.16) 0%,transparent 65%);z-index:1}
-  .glb{top:auto;bottom:-150px}
-  .sc{position:relative;z-index:10;padding:100px 88px 88px;height:100%;display:flex;flex-direction:column}
-  .scc{justify-content:center;align-items:center;text-align:center}
+.phd{text-align:center;margin-bottom:56px}
+.phd h1{font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#4ECDC4;margin-bottom:6px;font-family:'Geist Mono',monospace}
+.phd p{font-size:12px;color:#555;line-height:1.7}
+.phd .bg{display:inline-block;background:#4ECDC4;color:#0D1117;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:7px 18px;border-radius:40px;margin-top:12px;font-family:'Geist Mono',monospace}
 
-  .logo{height:80px;width:auto;object-fit:contain;display:block;flex-shrink:0}
+.sec{margin-bottom:72px}
+.lbl{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#4ECDC4;margin-bottom:4px;font-family:'Geist Mono',monospace}
+.desc{font-size:12px;color:#555;margin-bottom:6px;max-width:540px;line-height:1.6}
+.cap{font-size:11px;color:#666;margin-bottom:18px;max-width:540px;line-height:1.6;font-style:italic}
+.cap b{color:#4ECDC4;font-style:normal}
 
-  .ey{display:inline-flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:20px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:44px;width:fit-content}
-  .eyd{width:9px;height:9px;border-radius:50%;background:var(--teal)}
-  .h1{font-size:88px;font-weight:800;line-height:1.08;letter-spacing:-.04em;color:var(--text);margin-bottom:40px}
-  .hl{color:var(--teal)}
-  .bd{font-size:34px;font-weight:400;line-height:1.75;color:var(--sub)}
-  .dv{width:56px;height:4px;background:var(--teal);border-radius:4px;margin:44px 0}
-  .hln{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(78,205,196,.4),transparent);margin:44px 0}
+.car{display:flex;gap:14px;overflow-x:auto;padding-bottom:14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.car::-webkit-scrollbar{height:3px}.car::-webkit-scrollbar-track{background:#111}.car::-webkit-scrollbar-thumb{background:#333;border-radius:4px}
+.sw{flex:0 0 400px;scroll-snap-align:start;display:flex;flex-direction:column;gap:7px}
+.sl{width:400px;height:500px;border-radius:10px;overflow:hidden;position:relative;border:1px solid rgba(78,205,196,.06);box-shadow:0 4px 24px rgba(0,0,0,.3)}
+.brow{display:flex;gap:5px;width:400px}
+.db{flex:1;background:#171C24;border:1px solid rgba(78,205,196,.2);border-radius:6px;color:#4ECDC4;font-family:'Geist Mono',monospace;font-size:9px;font-weight:600;letter-spacing:.06em;padding:8px 10px;cursor:pointer;transition:all .15s;text-align:center}
+.db:hover{background:rgba(78,205,196,.08);border-color:#4ECDC4}
 
-  .pl{list-style:none;display:flex;flex-direction:column;gap:30px}
-  .pl li{font-size:34px;font-weight:500;color:var(--sub);padding-left:48px;position:relative;line-height:1.5}
-  .pl li::before{content:'×';position:absolute;left:0;top:-2px;color:#ff6b6b;font-size:36px;font-weight:700}
+.si{width:1080px;height:1350px;transform:scale(0.3704);transform-origin:top left;position:relative;overflow:hidden;font-family:'Geist',sans-serif}
 
-  .cl{list-style:none;display:flex;flex-direction:column;gap:30px}
-  .cl li{font-size:34px;font-weight:500;color:var(--sub);padding-left:52px;position:relative;line-height:1.5}
-  .cl li::before{content:'✓';position:absolute;left:2px;top:0;color:var(--teal);font-size:30px;font-weight:700}
+.bg-d{position:absolute;inset:0;background:#0D1117}
 
-  /* Solution mini cards */
-  .mc{background:var(--bg2);border:1.5px solid rgba(78,205,196,.15);border-radius:16px;padding:44px 48px;display:flex;flex-direction:column;gap:14px}
-  .mc+.mc{margin-top:16px}
-  .mcn{font-family:'Geist Mono',monospace;font-size:20px;font-weight:600;color:var(--teal);letter-spacing:.08em}
-  .mct{font-size:42px;font-weight:800;color:var(--text);letter-spacing:-.03em;line-height:1.15}
-  .mcd{font-size:26px;color:var(--muted);line-height:1.6}
+/* Image BG */
+.ib{position:absolute;inset:0;z-index:1}
+.ib img{width:100%;height:100%;object-fit:cover}
+.ib::after{content:'';position:absolute;inset:0}
+.ov-bottom .ib::after{background:linear-gradient(180deg,rgba(13,17,23,.35) 0%,rgba(13,17,23,.88) 50%,#0D1117 100%)}
 
-  .cta{display:inline-flex;align-items:center;gap:16px;background:var(--teal);color:#0D1117;padding:28px 52px;border-radius:12px;font-size:34px;font-weight:700;margin-top:40px;width:fit-content}
-  .cta svg{width:28px;height:28px;fill:#0D1117}
+.tx{position:absolute;inset:0;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:150px;z-index:2;pointer-events:none}
+.dg{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(78,205,196,.08) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 70% 55% at 50% 25%,black 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 70% 55% at 50% 25%,black 20%,transparent 70%);z-index:3}
+.gl-tl{position:absolute;top:-80px;left:-80px;width:350px;height:350px;background:radial-gradient(circle,rgba(78,205,196,.1) 0%,transparent 70%);z-index:3;pointer-events:none}
+.gl-br{position:absolute;bottom:-80px;right:-80px;width:350px;height:350px;background:radial-gradient(circle,rgba(78,205,196,.06) 0%,transparent 70%);z-index:3;pointer-events:none}
+.gl-c{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(78,205,196,.12) 0%,transparent 65%);z-index:3;pointer-events:none}
+.wm{position:absolute;bottom:28px;left:0;right:0;text-align:center;font-size:14px;letter-spacing:6px;color:rgba(78,205,196,.08);text-transform:uppercase;font-weight:700;z-index:10;font-family:'Geist Mono',monospace}
 
-  .qt{font-size:58px;font-weight:800;color:var(--text);line-height:1.25;letter-spacing:-.03em}
+.sc{position:relative;z-index:10;padding:100px 88px 88px;height:100%;display:flex;flex-direction:column}
+.sc-c{justify-content:center;align-items:center;text-align:center}
+.sc-e{justify-content:flex-end}
 
-  .sb{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:36px;border-top:1px solid var(--border)}
-  .sbt{font-family:'Geist Mono',monospace;font-size:20px;color:var(--muted);letter-spacing:.08em}
+.logo{height:80px;width:auto;object-fit:contain;display:block;flex-shrink:0}
+.ey{display:inline-flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:20px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#4ECDC4;margin-bottom:44px;width:fit-content}
+.eyd{width:9px;height:9px;border-radius:50%;background:#4ECDC4}
+.h1{font-size:88px;font-weight:800;line-height:1.08;letter-spacing:-.04em;color:#EAF0EE;margin-bottom:40px}
+.hl{color:#4ECDC4}
+.bd{font-size:34px;font-weight:400;line-height:1.75;color:rgba(234,240,238,.5)}
+.dv{width:56px;height:4px;background:#4ECDC4;border-radius:4px;margin:40px 0;flex-shrink:0}
+.hln{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(78,205,196,.3),transparent);margin:40px 0;flex-shrink:0}
 
-  .waPath{d:path("M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z")}
+.pl{list-style:none;display:flex;flex-direction:column;gap:30px}
+.pl li{font-size:34px;font-weight:500;color:rgba(234,240,238,.5);padding-left:48px;position:relative;line-height:1.5}
+.pl li::before{content:'✕';position:absolute;left:0;top:1px;color:rgba(255,107,107,.6);font-size:30px;font-weight:700}
+.cl{list-style:none;display:flex;flex-direction:column;gap:30px}
+.cl li{font-size:34px;font-weight:500;color:rgba(234,240,238,.5);padding-left:52px;position:relative;line-height:1.5}
+.cl li::before{content:'✓';position:absolute;left:2px;top:0;color:#4ECDC4;font-size:30px;font-weight:700}
+
+.mc{background:rgba(78,205,196,.04);border:1.5px solid rgba(78,205,196,.1);border-radius:16px;padding:44px 48px;display:flex;flex-direction:column;gap:14px}
+.mc+.mc{margin-top:16px}
+.mcn{font-family:'Geist Mono',monospace;font-size:20px;font-weight:600;color:#4ECDC4;letter-spacing:.08em}
+.mct{font-size:42px;font-weight:800;color:#EAF0EE;letter-spacing:-.03em;line-height:1.15}
+.mcd{font-size:26px;color:rgba(234,240,238,.4);line-height:1.6}
+
+.cta{display:inline-flex;align-items:center;gap:16px;background:#4ECDC4;color:#0D1117;padding:28px 52px;border-radius:12px;font-size:34px;font-weight:700;margin-top:40px;width:fit-content}
+.cta svg{width:28px;height:28px;fill:#0D1117}
+.qt{font-size:58px;font-weight:800;color:#EAF0EE;line-height:1.25;letter-spacing:-.03em}
+.ft{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:32px;border-top:1px solid rgba(78,205,196,.08);flex-shrink:0}
+.ft span{font-family:'Geist Mono',monospace;font-size:18px;color:rgba(234,240,238,.2);letter-spacing:.06em}
+.ft-c{justify-content:center}
+
+[contenteditable="true"]{outline:none;cursor:text;border-radius:3px;transition:box-shadow .2s}
+[contenteditable="true"]:hover{box-shadow:0 0 0 2px rgba(78,205,196,.15)}
+[contenteditable="true"]:focus{box-shadow:0 0 0 2px rgba(78,205,196,.35)}
+
+@media(max-width:440px){body{padding:20px 10px}.car{gap:10px;padding-bottom:10px}.sec{margin-bottom:44px}.cap,.desc{max-width:100%}}
 </style>
 </head>
 <body>
 
-<h1 class="pt">STRYV — Instagram Content Pack</h1>
-<p class="ps">6 publicaciones · 1080×1350 · Click "Descargar" para guardar cada slide</p>
+<div class="phd">
+  <h1>STRYV — Instagram Content Pack</h1>
+  <p>6 publicaciones · 1080×1350 · Edita textos directo → Descarga PNG</p>
+  <div class="bg">✏️ Todo editable + descargable</div>
+</div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- POST 1 — QUÉ ES STRYV (imagen única) -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- POST 1 — QUÉ ES STRYV (única con imagen de fondo) -->
 <div class="sec">
 <div class="lbl">Post 1 — Imagen única</div>
-<div class="desc">Tu carta de presentación. Alguien llega al perfil y entiende todo en 3 segundos.</div>
+<div class="desc">Tu carta de presentación. Imagen de sistema sutil de fondo.</div>
+<div class="cap"><b>Caption:</b> "Construimos el futuro operativo de tu empresa. Sistemas digitales con IA y automatización para que tu negocio funcione sin depender de ti. 🔧⚡"</div>
 <div class="car"><div class="sw">
 <div class="sl" id="p1"><div class="si">
-  <div class="sbg"></div><div class="dg"></div><div class="gl"></div>
-  <div class="sc scc">
-    <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" class="logo" style="margin-bottom:auto;" crossorigin="anonymous">
-    <h2 class="h1" style="font-size:84px;margin-bottom:36px;">Construimos el futuro operativo de tu <span class="hl">empresa.</span></h2>
-    <div class="dv" style="margin:32px auto;"></div>
-    <p class="bd" style="font-size:30px;max-width:780px;text-align:center;">Automatizamos tu operación con IA y sistemas digitales para que tu negocio funcione sin depender de ti.</p>
-    <div style="margin-top:auto;padding-top:48px;"><span class="sbt">stryvstudio.com</span></div>
+  <div class="bg-d"></div><div class="tx"></div><div class="dg"></div><div class="gl-tl"></div><div class="gl-br"></div>
+  <div class="sc sc-e">
+    <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" class="logo" style="position:absolute;top:88px;left:88px;" crossorigin="anonymous">
+    <div class="ey"><span class="eyd"></span> <span contenteditable="true">Estudio de implementación</span></div>
+    <h2 class="h1" style="font-size:82px;" contenteditable="true">Construimos el futuro operativo de tu <span class="hl">empresa.</span></h2>
+    <div class="dv"></div>
+    <p class="bd" style="font-size:30px;max-width:780px;" contenteditable="true">Automatizamos tu operación con IA y sistemas digitales para que tu negocio funcione sin depender de ti.</p>
+    <div class="ft" style="margin-top:28px;"><span>stryvstudio.com</span></div>
   </div>
+  <div class="wm">STRYV</div>
 </div></div>
-<button class="db" onclick="dl('p1','post1-stryv')">⬇ Descargar PNG</button>
+<div class="brow"><button class="db" onclick="dl('p1','post1-stryv')">⬇ Descargar PNG</button></div>
 </div></div></div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- POST 2 — EL PROBLEMA → SOLUCIÓN (carrusel 5) -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- POST 2 — CARRUSEL (5 slides) -->
 <div class="sec">
 <div class="lbl">Post 2 — Carrusel (5 slides)</div>
-<div class="desc">Gancho emocional → dolor → frase clave → resultados → CTA.</div>
+<div class="desc">Gancho → dolor → frase clave → resultados → CTA.</div>
+<div class="cap"><b>Caption:</b> "Tu negocio funciona. Pero si se para cuando tú paras... necesita sistemas. Desliza para ver qué cambia. 👉"</div>
 <div class="car">
 
-<!-- 2.1 Gancho -->
 <div class="sw"><div class="sl" id="p2a"><div class="si">
-  <div class="sbg"></div><div class="dg"></div><div class="gl"></div>
-  <div class="sc scc">
+  <div class="bg-d"></div><div class="tx"></div><div class="dg"></div><div class="gl-tl"></div>
+  <div class="sc sc-c">
     <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" class="logo" style="position:absolute;top:88px;left:88px;" crossorigin="anonymous">
-    <h2 class="h1" style="font-size:98px;">Tu negocio funciona.<br><br>¿Pero podría funcionar <span class="hl">sin ti?</span></h2>
-    <p class="bd" style="margin-top:32px;font-size:30px;color:var(--muted);">Desliza →</p>
+    <h2 class="h1" style="font-size:96px;" contenteditable="true">Tu negocio funciona.<br><br>¿Pero podría funcionar <span class="hl">sin ti?</span></h2>
+    <p class="bd" style="margin-top:32px;font-size:28px;color:rgba(234,240,238,.25);">Desliza →</p>
   </div>
-</div></div><button class="db" onclick="dl('p2a','post2-01-gancho')">⬇ Descargar PNG</button></div>
+  <div class="wm">STRYV</div>
+</div></div>
+<div class="brow"><button class="db" onclick="dl('p2a','post2-01-gancho')">⬇ Descargar PNG</button></div>
+</div>
 
-<!-- 2.2 Dolores -->
 <div class="sw"><div class="sl" id="p2b"><div class="si">
-  <div class="sbg"></div>
+  <div class="bg-d"></div><div class="tx"></div>
   <div class="sc">
-    <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" class="logo" style="margin-bottom:64px;" crossorigin="anonymous">
-    <h2 class="h1" style="font-size:58px;margin-bottom:52px;color:var(--sub);">Si te identificas con algo de esto, necesitas sistemas:</h2>
+    <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" class="logo" style="margin-bottom:56px;" crossorigin="anonymous">
+    <h2 class="h1" style="font-size:54px;margin-bottom:52px;color:rgba(234,240,238,.45);" contenteditable="true">Si te identificas con algo de esto, necesitas sistemas:</h2>
     <ul class="pl">
-      <li>Todo depende de ti</li>
-      <li>Procesos manuales que te comen el día</li>
-      <li>Clientes que se pierden por falta de seguimiento</li>
-      <li>Decides con intuición, no con datos</li>
-      <li>Quieres crecer pero se rompe todo</li>
+      <li contenteditable="true">Todo depende de ti</li>
+      <li contenteditable="true">Procesos manuales que te comen el día</li>
+      <li contenteditable="true">Clientes que se pierden por falta de seguimiento</li>
+      <li contenteditable="true">Decides con intuición, no con datos</li>
+      <li contenteditable="true">Quieres crecer pero se rompe todo</li>
     </ul>
-    <div class="sb"><span class="sbt">@stryv.studio</span></div>
+    <div class="ft"><span>@stryv.studio</span></div>
   </div>
-</div></div><button class="db" onclick="dl('p2b','post2-02-dolor')">⬇ Descargar PNG</button></div>
+  <div class="wm">STRYV</div>
+</div></div>
+<div class="brow"><button class="db" onclick="dl('p2b','post2-02-dolor')">⬇ Descargar PNG</button></div>
+</div>
 
-<!-- 2.3 Frase clave -->
 <div class="sw"><div class="sl" id="p2c"><div class="si">
-  <div class="sbg"></div><div class="gl" style="top:50%;transform:translate(-50%,-50%);"></div>
-  <div class="sc scc">
-    <h2 class="qt" style="font-size:72px;text-align:left;max-width:820px;">El problema no es que no lleguen clientes.<br><br>Es que tu operación <span class="hl">no puede atenderlos bien.</span></h2>
-    <div style="margin-top:auto;padding-top:48px;"><span class="sbt">@stryv.studio</span></div>
+  <div class="bg-d"></div><div class="tx"></div><div class="gl-c"></div>
+  <div class="sc sc-c" style="padding-top:220px;">
+    <h2 class="qt" style="font-size:68px;max-width:850px;" contenteditable="true">El problema no es que no lleguen clientes.<br><br>Es que tu operación <span class="hl">no puede atenderlos bien.</span></h2>
+    <div class="ft ft-c" style="border:none;"><span>@stryv.studio</span></div>
   </div>
-</div></div><button class="db" onclick="dl('p2c','post2-03-frase')">⬇ Descargar PNG</button></div>
+  <div class="wm">STRYV</div>
+</div></div>
+<div class="brow"><button class="db" onclick="dl('p2c','post2-03-frase')">⬇ Descargar PNG</button></div>
+</div>
 
-<!-- 2.4 Qué cambia -->
 <div class="sw"><div class="sl" id="p2d"><div class="si">
-  <div class="sbg"></div><div class="dg"></div>
+  <div class="bg-d"></div><div class="tx"></div><div class="dg"></div>
   <div class="sc">
-    <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" class="logo" style="margin-bottom:64px;" crossorigin="anonymous">
-    <h2 class="h1" style="font-size:58px;margin-bottom:52px;color:var(--sub);">Con la operación digital bien armada:</h2>
+    <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" class="logo" style="margin-bottom:56px;" crossorigin="anonymous">
+    <div class="ey"><span class="eyd"></span> <span contenteditable="true">Resultados</span></div>
+    <h2 class="h1" style="font-size:52px;margin-bottom:48px;color:rgba(234,240,238,.45);" contenteditable="true">Con la operación digital bien armada:</h2>
     <ul class="cl">
-      <li>Vendes más sin depender de tu tiempo</li>
-      <li>Atiendes mejor y más rápido</li>
-      <li>Menos retrabajo y errores</li>
-      <li>Decisiones con datos reales</li>
-      <li>Tu negocio escala sin romperse</li>
+      <li contenteditable="true">Vendes más sin depender de tu tiempo</li>
+      <li contenteditable="true">Atiendes mejor y más rápido</li>
+      <li contenteditable="true">Menos retrabajo y errores</li>
+      <li contenteditable="true">Decisiones con datos reales</li>
+      <li contenteditable="true">Tu negocio escala sin romperse</li>
     </ul>
-    <div class="sb"><span class="sbt">@stryv.studio</span></div>
+    <div class="ft"><span>@stryv.studio</span></div>
   </div>
-</div></div><button class="db" onclick="dl('p2d','post2-04-resultado')">⬇ Descargar PNG</button></div>
+  <div class="wm">STRYV</div>
+</div></div>
+<div class="brow"><button class="db" onclick="dl('p2d','post2-04-resultado')">⬇ Descargar PNG</button></div>
+</div>
 
-<!-- 2.5 CTA -->
 <div class="sw"><div class="sl" id="p2e"><div class="si">
-  <div class="sbg"></div><div class="gl"></div><div class="gl glb"></div>
-  <div class="sc scc">
+  <div class="bg-d"></div><div class="tx"></div><div class="gl-tl"></div><div class="gl-br"></div>
+  <div class="sc sc-c">
     <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" class="logo" style="margin-bottom:auto;" crossorigin="anonymous">
-    <h2 class="h1" style="font-size:74px;">¿Quieres que tu negocio opere <span class="hl">sin depender de ti?</span></h2>
-    <p class="bd" style="font-size:30px;margin-bottom:8px;">Primera sesión gratis. Sin compromiso.</p>
+    <h2 class="h1" style="font-size:74px;" contenteditable="true">¿Quieres que tu negocio opere <span class="hl">sin depender de ti?</span></h2>
+    <p class="bd" style="font-size:28px;margin-bottom:8px;" contenteditable="true">Primera sesión gratis. Sin compromiso.</p>
     <div class="cta"><svg viewBox="0 0 24 24" style="width:28px;height:28px;fill:#0D1117"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Agenda tu diagnóstico</div>
-    <div style="margin-top:auto;padding-top:48px;"><span class="sbt">Link en bio</span></div>
+    <div class="ft ft-c" style="margin-top:auto;border:none;"><span>Link en bio</span></div>
   </div>
-</div></div><button class="db" onclick="dl('p2e','post2-05-cta')">⬇ Descargar PNG</button></div>
+  <div class="wm">STRYV</div>
+</div></div>
+<div class="brow"><button class="db" onclick="dl('p2e','post2-05-cta')">⬇ Descargar PNG</button></div>
+</div>
 
 </div></div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- POST 3 — LAS 4 SOLUCIONES (carrusel 3) -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- POST 3 — SOLUCIONES (carrusel 3) -->
 <div class="sec">
 <div class="lbl">Post 3 — Carrusel (3 slides)</div>
-<div class="desc">Las 4 soluciones en lenguaje simple. Cover + 2 slides con 2 soluciones cada uno.</div>
+<div class="desc">Qué construimos, en lenguaje simple.</div>
+<div class="cap"><b>Caption:</b> "No somos agencia. No hacemos contenido ni logos. Construimos los sistemas que hacen que tu negocio opere, venda y escale. 🔧"</div>
 <div class="car">
 
-<!-- Cover -->
 <div class="sw"><div class="sl" id="p3a"><div class="si">
-  <div class="sbg"></div><div class="dg"></div><div class="gl"></div>
-  <div class="sc scc">
+  <div class="bg-d"></div><div class="tx"></div><div class="dg"></div><div class="gl-tl"></div>
+  <div class="sc sc-c">
     <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" class="logo" style="position:absolute;top:88px;left:88px;" crossorigin="anonymous">
-    <div class="ey"><span class="eyd"></span> Qué hacemos</div>
-    <h2 class="h1" style="font-size:92px;">4 sistemas.<br>Una operación que <span class="hl">funciona sola.</span></h2>
-    <p class="bd" style="margin-top:24px;font-size:30px;color:var(--muted);">Desliza →</p>
+    <div class="ey"><span class="eyd"></span> <span contenteditable="true">Qué hacemos</span></div>
+    <h2 class="h1" style="font-size:92px;" contenteditable="true">4 sistemas.<br>Una operación que <span class="hl">funciona sola.</span></h2>
+    <p class="bd" style="margin-top:24px;font-size:28px;color:rgba(234,240,238,.25);">Desliza →</p>
   </div>
-</div></div><button class="db" onclick="dl('p3a','post3-01-cover')">⬇ Descargar PNG</button></div>
+  <div class="wm">STRYV</div>
+</div></div>
+<div class="brow"><button class="db" onclick="dl('p3a','post3-01-cover')">⬇ Descargar PNG</button></div>
+</div>
 
-<!-- Sol 1+2 -->
 <div class="sw"><div class="sl" id="p3b"><div class="si">
-  <div class="sbg"></div>
+  <div class="bg-d"></div><div class="tx"></div>
   <div class="sc">
     <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" class="logo" style="margin-bottom:48px;" crossorigin="anonymous">
-    <div class="mc">
-      <div class="mcn">01</div>
-      <div class="mct">Ventas y entrega</div>
-      <div class="mcd">Que el cliente llegue, pague, reciba y vuelva — con eventos de conversión, métricas reales y todo automatizado.</div>
-    </div>
-    <div class="mc">
-      <div class="mcn">02</div>
-      <div class="mct">Atención con IA</div>
-      <div class="mcd">Que cada mensaje se responda rápido, se clasifique y no se pierda ningún cliente.</div>
-    </div>
-    <div class="sb"><span class="sbt">@stryv.studio</span></div>
+    <div class="mc"><div class="mcn">01</div><div class="mct" contenteditable="true">Ventas y entrega</div><div class="mcd" contenteditable="true">Que el cliente llegue, pague, reciba y vuelva — con eventos de conversión, métricas reales y todo automatizado.</div></div>
+    <div class="mc"><div class="mcn">02</div><div class="mct" contenteditable="true">Atención con IA</div><div class="mcd" contenteditable="true">Que cada mensaje se responda rápido, se clasifique y no se pierda ningún cliente.</div></div>
+    <div class="ft"><span>@stryv.studio</span></div>
   </div>
-</div></div><button class="db" onclick="dl('p3b','post3-02-sol12')">⬇ Descargar PNG</button></div>
+  <div class="wm">STRYV</div>
+</div></div>
+<div class="brow"><button class="db" onclick="dl('p3b','post3-02-sol12')">⬇ Descargar PNG</button></div>
+</div>
 
-<!-- Sol 3+4 -->
 <div class="sw"><div class="sl" id="p3c"><div class="si">
-  <div class="sbg"></div>
+  <div class="bg-d"></div><div class="tx"></div>
   <div class="sc">
     <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" class="logo" style="margin-bottom:48px;" crossorigin="anonymous">
-    <div class="mc">
-      <div class="mcn">03</div>
-      <div class="mct">Negocio local + campañas</div>
-      <div class="mcd">Convertir tráfico en ventas, optimizar campañas con IA, medir conversiones reales y que el cliente regrese.</div>
-    </div>
-    <div class="mc">
-      <div class="mcn">04</div>
-      <div class="mct">Operación interna</div>
-      <div class="mcd">Pedidos, inventario, tareas y equipo — todo ordenado en un solo lugar.</div>
-    </div>
-    <div class="sb"><span class="sbt">@stryv.studio</span></div>
+    <div class="mc"><div class="mcn">03</div><div class="mct" contenteditable="true">Negocio local + campañas</div><div class="mcd" contenteditable="true">Convertir tráfico en ventas, optimizar campañas con IA, medir conversiones reales y que el cliente regrese.</div></div>
+    <div class="mc"><div class="mcn">04</div><div class="mct" contenteditable="true">Operación interna</div><div class="mcd" contenteditable="true">Pedidos, inventario, tareas y equipo — todo ordenado en un solo lugar.</div></div>
+    <div class="ft"><span>@stryv.studio</span></div>
   </div>
-</div></div><button class="db" onclick="dl('p3c','post3-03-sol34')">⬇ Descargar PNG</button></div>
+  <div class="wm">STRYV</div>
+</div></div>
+<div class="brow"><button class="db" onclick="dl('p3c','post3-03-sol34')">⬇ Descargar PNG</button></div>
+</div>
 
 </div></div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- POST 4 — PARA QUIÉN SÍ / NO (carrusel 2) -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- POST 4 — PARA QUIÉN (carrusel 2) -->
 <div class="sec">
 <div class="lbl">Post 4 — Carrusel (2 slides)</div>
-<div class="desc">Filtra rápido. Que la gente correcta se identifique y la incorrecta se vaya.</div>
+<div class="desc">Filtra rápido.</div>
+<div class="cap"><b>Caption:</b> "No es para todos. Y eso está bien. Es para negocios que ya funcionan y quieren escalar con sistemas. ¿Eres tú? Link en bio. 🎯"</div>
 <div class="car">
 
-<!-- SÍ -->
 <div class="sw"><div class="sl" id="p4a"><div class="si">
-  <div class="sbg"></div><div class="dg"></div>
+  <div class="bg-d"></div><div class="tx"></div><div class="dg"></div>
   <div class="sc">
     <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" class="logo" style="margin-bottom:56px;" crossorigin="anonymous">
-    <div class="ey"><span class="eyd"></span> Es para ti si</div>
+    <div class="ey"><span class="eyd"></span> <span contenteditable="true">Es para ti si</span></div>
     <ul class="cl" style="gap:34px;">
-      <li>Ya tienes clientes y ventas</li>
-      <li>Tu operación es un caos organizado</li>
-      <li>Quieres crecer sin contratar 10 personas</li>
-      <li>Necesitas que el negocio no dependa solo de ti</li>
+      <li contenteditable="true">Ya tienes clientes y ventas</li>
+      <li contenteditable="true">Tu operación es un caos organizado</li>
+      <li contenteditable="true">Quieres crecer sin contratar 10 personas</li>
+      <li contenteditable="true">Necesitas que el negocio no dependa solo de ti</li>
     </ul>
-    <div class="sb"><span class="sbt">@stryv.studio</span></div>
+    <div class="ft"><span>@stryv.studio</span></div>
   </div>
-</div></div><button class="db" onclick="dl('p4a','post4-01-si')">⬇ Descargar PNG</button></div>
+  <div class="wm">STRYV</div>
+</div></div>
+<div class="brow"><button class="db" onclick="dl('p4a','post4-01-si')">⬇ Descargar PNG</button></div>
+</div>
 
-<!-- NO -->
 <div class="sw"><div class="sl" id="p4b"><div class="si">
-  <div class="sbg"></div>
+  <div class="bg-d"></div><div class="tx"></div>
   <div class="sc">
     <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" class="logo" style="margin-bottom:56px;" crossorigin="anonymous">
-    <div class="ey" style="color:#ff6b6b;"><span class="eyd" style="background:#ff6b6b;"></span> No es para ti si</div>
+    <div class="ey" style="color:#ff6b6b;"><span class="eyd" style="background:#ff6b6b;"></span> <span contenteditable="true">No es para ti si</span></div>
     <ul class="pl" style="gap:34px;">
-      <li>Apenas estás empezando desde cero</li>
-      <li>Buscas logos, branding o manejo de redes</li>
-      <li>Quieres una web bonita y ya</li>
+      <li contenteditable="true">Apenas estás empezando desde cero</li>
+      <li contenteditable="true">Buscas logos, branding o manejo de redes</li>
+      <li contenteditable="true">Quieres una web bonita y ya</li>
     </ul>
     <div class="hln" style="margin:36px 0;"></div>
-    <p class="bd" style="font-size:28px;color:var(--muted);font-style:italic;">No manejamos redes ni hacemos branding. Construimos sistemas que venden y operan.</p>
-    <div class="sb"><span class="sbt">@stryv.studio</span></div>
+    <p class="bd" style="font-size:28px;color:rgba(234,240,238,.25);font-style:italic;" contenteditable="true">No manejamos redes ni hacemos branding. Construimos sistemas que venden y operan.</p>
+    <div class="ft"><span>@stryv.studio</span></div>
   </div>
-</div></div><button class="db" onclick="dl('p4b','post4-02-no')">⬇ Descargar PNG</button></div>
+  <div class="wm">STRYV</div>
+</div></div>
+<div class="brow"><button class="db" onclick="dl('p4b','post4-02-no')">⬇ Descargar PNG</button></div>
+</div>
 
 </div></div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- POST 5 — FRASE (imagen única) -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- POST 5 — FRASE -->
 <div class="sec">
 <div class="lbl">Post 5 — Imagen única</div>
-<div class="desc">La frase que te diferencia. Simple, limpia, memorable.</div>
+<div class="desc">La frase que te diferencia.</div>
+<div class="cap"><b>Caption:</b> "Más herramientas no es la respuesta. Un sistema que las conecte, sí. 🔧"</div>
 <div class="car"><div class="sw">
 <div class="sl" id="p5"><div class="si">
-  <div class="sbg"></div><div class="gl" style="top:50%;transform:translate(-50%,-50%);"></div>
-  <div class="sc scc">
+  <div class="bg-d"></div><div class="tx"></div><div class="gl-c"></div>
+  <div class="sc sc-c">
     <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" class="logo" style="position:absolute;top:88px;left:50%;transform:translateX(-50%);" crossorigin="anonymous">
-    <h2 class="h1" style="font-size:104px;max-width:900px;">No necesitas más marketing.<br><br>Necesitas <span class="hl">sistemas.</span></h2>
-    <div style="margin-top:auto;padding-top:48px;"><span class="sbt">@stryv.studio</span></div>
+    <h2 class="h1" style="font-size:104px;max-width:900px;margin-top:60px;" contenteditable="true">No necesitas más marketing.<br><br>Necesitas <span class="hl">sistemas.</span></h2>
+    <div class="ft ft-c" style="border:none;"><span>@stryv.studio</span></div>
   </div>
+  <div class="wm">STRYV</div>
 </div></div>
-<button class="db" onclick="dl('p5','post5-frase')">⬇ Descargar PNG</button>
+<div class="brow"><button class="db" onclick="dl('p5','post5-frase')">⬇ Descargar PNG</button></div>
 </div></div></div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- POST 6 — CTA (imagen única) -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- POST 6 — CTA -->
 <div class="sec">
 <div class="lbl">Post 6 — Imagen única</div>
-<div class="desc">Cierre directo. Diagnóstico gratis, WhatsApp, sin vueltas.</div>
+<div class="desc">Cierre directo.</div>
+<div class="cap"><b>Caption:</b> "20 minutos. Sin costo. Te decimos exactamente qué necesita tu negocio para operar mejor. Escríbenos 👇 Link en bio."</div>
 <div class="car"><div class="sw">
 <div class="sl" id="p6"><div class="si">
-  <div class="sbg"></div><div class="dg"></div><div class="gl"></div><div class="gl glb"></div>
-  <div class="sc scc">
+  <div class="bg-d"></div><div class="tx"></div><div class="dg"></div><div class="gl-tl"></div><div class="gl-br"></div>
+  <div class="sc sc-c">
     <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" class="logo" style="margin-bottom:auto;" crossorigin="anonymous">
-    <div class="ey"><span class="eyd"></span> Diagnóstico gratis</div>
-    <h2 class="h1" style="font-size:78px;">¿Tu operación necesita <span class="hl">estructura?</span></h2>
-    <p class="bd" style="font-size:30px;max-width:780px;text-align:center;margin-bottom:8px;">Te decimos qué necesita tu negocio en una llamada de 20 min. Sin costo. Sin compromiso.</p>
+    <div class="ey"><span class="eyd"></span> <span contenteditable="true">Diagnóstico gratis</span></div>
+    <h2 class="h1" style="font-size:76px;" contenteditable="true">¿Tu operación necesita <span class="hl">estructura?</span></h2>
+    <p class="bd" style="font-size:30px;max-width:780px;text-align:center;margin-bottom:8px;" contenteditable="true">Te decimos qué necesita tu negocio en una llamada de 20 min. Sin costo. Sin compromiso.</p>
     <div class="cta"><svg viewBox="0 0 24 24" style="width:28px;height:28px;fill:#0D1117"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Escríbenos por WhatsApp</div>
-    <div style="margin-top:auto;padding-top:48px;"><span class="sbt">stryvstudio.com · Link en bio</span></div>
+    <div class="ft ft-c" style="margin-top:auto;border:none;"><span>stryvstudio.com · Link en bio</span></div>
   </div>
+  <div class="wm">STRYV</div>
 </div></div>
-<button class="db" onclick="dl('p6','post6-cta')">⬇ Descargar PNG</button>
+<div class="brow"><button class="db" onclick="dl('p6','post6-cta')">⬇ Descargar PNG</button></div>
 </div></div></div>
 
 <script>
 async function dl(id,name){
-  const el=document.getElementById(id),inner=el.querySelector('.si'),btn=el.closest('.sw').querySelector('.db');
-  btn.textContent='⏳ Generando...';btn.disabled=true;
-  const ot=inner.style.transform,ow=el.style.width,oh=el.style.height;
-  inner.style.transform='none';el.style.width='1080px';el.style.height='1350px';el.style.overflow='hidden';
-  try{const c=await html2canvas(inner,{width:1080,height:1350,scale:1,useCORS:true,allowTaint:false,backgroundColor:'#0D1117',logging:false});const a=document.createElement('a');a.download=name+'.png';a.href=c.toDataURL('image/png');a.click();}catch(e){console.error(e);alert('Error. Intenta screenshot.');}
-  inner.style.transform=ot;el.style.width=ow;el.style.height=oh;el.style.overflow='';btn.textContent='⬇ Descargar PNG';btn.disabled=false;
+  const el=document.getElementById(id),inner=el.querySelector('.si'),sw=el.closest('.sw'),btns=sw.querySelectorAll('.db');
+  btns.forEach(b=>{b.dataset.o=b.textContent;b.textContent='⏳';b.disabled=true});
+  inner.querySelectorAll('[contenteditable]').forEach(e=>e.blur());
+  const clone=inner.cloneNode(true);
+  clone.style.transform='none';clone.style.width='1080px';clone.style.height='1350px';
+  clone.style.position='fixed';clone.style.left='-9999px';clone.style.top='0';clone.style.zIndex='-1';clone.style.overflow='hidden';
+  document.body.appendChild(clone);
+  await new Promise(r=>setTimeout(r,600));
+  try{const c=await html2canvas(clone,{width:1080,height:1350,scale:2,useCORS:true,allowTaint:true,backgroundColor:null,logging:false});const a=document.createElement('a');a.download=name+'.png';a.href=c.toDataURL('image/png');a.click();}catch(e){console.error(e);alert('Error al generar.');}
+  document.body.removeChild(clone);
+  btns.forEach(b=>{b.textContent=b.dataset.o;b.disabled=false});
 }
+function scaleSl(){
+  if(window.innerWidth>440){document.querySelectorAll('.si').forEach(e=>{e.style.transform='scale(0.3704)'});document.querySelectorAll('.sl').forEach(e=>{e.style.width='400px';e.style.height='500px'});document.querySelectorAll('.sw').forEach(e=>{e.style.flex='0 0 400px'});document.querySelectorAll('.brow').forEach(e=>{e.style.width='400px'});return;}
+  var w=window.innerWidth-20,s=w/1080;
+  document.querySelectorAll('.si').forEach(e=>{e.style.transform='scale('+s+')';e.style.transformOrigin='top left'});document.querySelectorAll('.sl').forEach(e=>{e.style.width=w+'px';e.style.height=Math.round(w*1.25)+'px'});document.querySelectorAll('.sw').forEach(e=>{e.style.flex='0 0 '+w+'px'});document.querySelectorAll('.brow').forEach(e=>{e.style.width=w+'px'});
+}
+scaleSl();window.addEventListener('resize',scaleSl);
 </script>
 </body>
 </html>
