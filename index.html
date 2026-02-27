@@ -53,7 +53,7 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 .sc-c{justify-content:center;align-items:center;text-align:center}
 .sc-e{justify-content:flex-end}
 
-.logo{height:80px;width:auto;object-fit:contain;display:block;flex-shrink:0}
+.logo{height:80px;width:200px;display:block;flex-shrink:0}
 .ey{display:inline-flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:20px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#4ECDC4;margin-bottom:44px;width:fit-content}
 .eyd{width:9px;height:9px;border-radius:50%;background:#4ECDC4}
 .h1{font-size:88px;font-weight:800;line-height:1.08;letter-spacing:-.04em;color:#EAF0EE;margin-bottom:40px}
@@ -109,7 +109,7 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
   <div style="position:absolute;inset:0;background:#0D1117;"></div>
   <div class="tx"></div>
   <div style="position:absolute;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;">
-    <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" crossorigin="anonymous" style="height:420px;width:auto;object-fit:contain;">
+    <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" crossorigin="anonymous" style="height:420px;width:1050px;">
   </div>
   <div style="position:absolute;inset:180px;border-radius:50%;border:2px solid rgba(78,205,196,.08);pointer-events:none;z-index:20;"></div>
 </div></div>
@@ -122,7 +122,7 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
   <div style="position:absolute;inset:0;background:#EAF0EE;"></div>
   <div class="tx"></div>
   <div style="position:absolute;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;">
-    <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" crossorigin="anonymous" style="height:420px;width:auto;object-fit:contain;filter:brightness(0) saturate(100%) invert(15%) sepia(10%) saturate(500%) hue-rotate(160deg);">
+    <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" crossorigin="anonymous" style="height:420px;width:1050px;filter:brightness(0) saturate(100%) invert(15%) sepia(10%) saturate(500%) hue-rotate(160deg);">
   </div>
   <div style="position:absolute;inset:180px;border-radius:50%;border:2px solid rgba(13,17,23,.06);pointer-events:none;z-index:20;"></div>
 </div></div>
@@ -371,6 +371,28 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 </div></div></div>
 
 <script>
+async function toB64(img){
+  return new Promise((res)=>{
+    if(img.src.startsWith('data:')){res(img.src);return;}
+    const c=document.createElement('canvas');
+    c.width=img.naturalWidth||img.width;c.height=img.naturalHeight||img.height;
+    const ctx=c.getContext('2d');ctx.drawImage(img,0,0);
+    try{res(c.toDataURL('image/png'));}catch(e){res(img.src);}
+  });
+}
+async function prepClone(clone){
+  const imgs=clone.querySelectorAll('img');
+  for(const img of imgs){
+    try{
+      const orig=document.querySelector('img[src="'+img.getAttribute('src')+'"]');
+      if(orig&&orig.complete&&orig.naturalWidth>0){
+        const b64=await toB64(orig);
+        img.src=b64;
+      }
+    }catch(e){}
+  }
+  await new Promise(r=>setTimeout(r,300));
+}
 async function dl(id,name){
   const el=document.getElementById(id),inner=el.querySelector('.si'),sw=el.closest('.sw'),btns=sw.querySelectorAll('.db');
   btns.forEach(b=>{b.dataset.o=b.textContent;b.textContent='⏳';b.disabled=true});
@@ -379,7 +401,7 @@ async function dl(id,name){
   clone.style.transform='none';clone.style.width='1080px';clone.style.height='1350px';
   clone.style.position='fixed';clone.style.left='-9999px';clone.style.top='0';clone.style.zIndex='-1';clone.style.overflow='hidden';
   document.body.appendChild(clone);
-  await new Promise(r=>setTimeout(r,600));
+  await prepClone(clone);
   try{const c=await html2canvas(clone,{width:1080,height:1350,scale:2,useCORS:true,allowTaint:true,backgroundColor:null,logging:false});const a=document.createElement('a');a.download=name+'.png';a.href=c.toDataURL('image/png');a.click();}catch(e){console.error(e);alert('Error al generar.');}
   document.body.removeChild(clone);
   btns.forEach(b=>{b.textContent=b.dataset.o;b.disabled=false});
@@ -391,7 +413,7 @@ async function dlSq(id,name){
   clone.style.transform='none';clone.style.width='2160px';clone.style.height='2160px';
   clone.style.position='fixed';clone.style.left='-9999px';clone.style.top='0';clone.style.zIndex='-1';clone.style.overflow='hidden';
   document.body.appendChild(clone);
-  await new Promise(r=>setTimeout(r,600));
+  await prepClone(clone);
   try{const c=await html2canvas(clone,{width:2160,height:2160,scale:1,useCORS:true,allowTaint:true,backgroundColor:null,logging:false});const a=document.createElement('a');a.download=name+'.png';a.href=c.toDataURL('image/png');a.click();}catch(e){console.error(e);alert('Error al generar.');}
   document.body.removeChild(clone);
   btns.forEach(b=>{b.textContent=b.dataset.o;b.disabled=false});
