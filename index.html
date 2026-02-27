@@ -26,6 +26,8 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 .car::-webkit-scrollbar{height:3px}.car::-webkit-scrollbar-track{background:#111}.car::-webkit-scrollbar-thumb{background:#333;border-radius:4px}
 .sw{flex:0 0 400px;scroll-snap-align:start;display:flex;flex-direction:column;gap:7px}
 .sl{width:400px;height:500px;border-radius:10px;overflow:hidden;position:relative;border:1px solid rgba(78,205,196,.06);box-shadow:0 4px 24px rgba(0,0,0,.3)}
+.sl-sq{width:400px;height:400px}
+.si-sq{width:2160px;height:2160px;transform:scale(0.1852);transform-origin:top left;position:relative;overflow:hidden;font-family:'Geist',sans-serif}
 .brow{display:flex;gap:5px;width:400px}
 .db{flex:1;background:#171C24;border:1px solid rgba(78,205,196,.2);border-radius:6px;color:#4ECDC4;font-family:'Geist Mono',monospace;font-size:9px;font-weight:600;letter-spacing:.06em;padding:8px 10px;cursor:pointer;transition:all .15s;text-align:center}
 .db:hover{background:rgba(78,205,196,.08);border-color:#4ECDC4}
@@ -94,6 +96,40 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
   <p>6 publicaciones · 1080×1350 · Edita textos directo → Descarga PNG</p>
   <div class="bg">✏️ Todo editable + descargable</div>
 </div>
+
+<!-- FOTO DE PERFIL — Instagram -->
+<div class="sec">
+<div class="lbl">Foto de perfil — Instagram</div>
+<div class="desc">Logo de perfil para Instagram. 2160×2160 HD — sin pixeleo. Dos versiones: oscura y clara.</div>
+<div class="car">
+
+<!-- Versión oscura -->
+<div class="sw">
+<div class="sl sl-sq" id="pfp1"><div class="si-sq">
+  <div style="position:absolute;inset:0;background:#0D1117;"></div>
+  <div class="tx"></div>
+  <div style="position:absolute;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;">
+    <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" crossorigin="anonymous" style="height:420px;width:auto;object-fit:contain;">
+  </div>
+  <div style="position:absolute;inset:180px;border-radius:50%;border:2px solid rgba(78,205,196,.08);pointer-events:none;z-index:20;"></div>
+</div></div>
+<div class="brow"><button class="db" onclick="dlSq('pfp1','perfil-ig-oscuro-HD')">⬇ Descargar oscura (2160×2160)</button></div>
+</div>
+
+<!-- Versión clara -->
+<div class="sw">
+<div class="sl sl-sq" id="pfp2"><div class="si-sq">
+  <div style="position:absolute;inset:0;background:#EAF0EE;"></div>
+  <div class="tx"></div>
+  <div style="position:absolute;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;">
+    <img src="https://res.cloudinary.com/dona0k7rk/image/upload/v1771805567/stryv_cvfufm.png" crossorigin="anonymous" style="height:420px;width:auto;object-fit:contain;filter:brightness(0) saturate(100%) invert(15%) sepia(10%) saturate(500%) hue-rotate(160deg);">
+  </div>
+  <div style="position:absolute;inset:180px;border-radius:50%;border:2px solid rgba(13,17,23,.06);pointer-events:none;z-index:20;"></div>
+</div></div>
+<div class="brow"><button class="db" onclick="dlSq('pfp2','perfil-ig-claro-HD')">⬇ Descargar clara (2160×2160)</button></div>
+</div>
+
+</div></div>
 
 <!-- POST 1 — QUÉ ES STRYV (única con imagen de fondo) -->
 <div class="sec">
@@ -348,10 +384,22 @@ async function dl(id,name){
   document.body.removeChild(clone);
   btns.forEach(b=>{b.textContent=b.dataset.o;b.disabled=false});
 }
+async function dlSq(id,name){
+  const el=document.getElementById(id),inner=el.querySelector('.si-sq'),sw=el.closest('.sw'),btns=sw.querySelectorAll('.db');
+  btns.forEach(b=>{b.dataset.o=b.textContent;b.textContent='⏳';b.disabled=true});
+  const clone=inner.cloneNode(true);
+  clone.style.transform='none';clone.style.width='2160px';clone.style.height='2160px';
+  clone.style.position='fixed';clone.style.left='-9999px';clone.style.top='0';clone.style.zIndex='-1';clone.style.overflow='hidden';
+  document.body.appendChild(clone);
+  await new Promise(r=>setTimeout(r,600));
+  try{const c=await html2canvas(clone,{width:2160,height:2160,scale:1,useCORS:true,allowTaint:true,backgroundColor:null,logging:false});const a=document.createElement('a');a.download=name+'.png';a.href=c.toDataURL('image/png');a.click();}catch(e){console.error(e);alert('Error al generar.');}
+  document.body.removeChild(clone);
+  btns.forEach(b=>{b.textContent=b.dataset.o;b.disabled=false});
+}
 function scaleSl(){
-  if(window.innerWidth>440){document.querySelectorAll('.si').forEach(e=>{e.style.transform='scale(0.3704)'});document.querySelectorAll('.sl').forEach(e=>{e.style.width='400px';e.style.height='500px'});document.querySelectorAll('.sw').forEach(e=>{e.style.flex='0 0 400px'});document.querySelectorAll('.brow').forEach(e=>{e.style.width='400px'});return;}
-  var w=window.innerWidth-20,s=w/1080;
-  document.querySelectorAll('.si').forEach(e=>{e.style.transform='scale('+s+')';e.style.transformOrigin='top left'});document.querySelectorAll('.sl').forEach(e=>{e.style.width=w+'px';e.style.height=Math.round(w*1.25)+'px'});document.querySelectorAll('.sw').forEach(e=>{e.style.flex='0 0 '+w+'px'});document.querySelectorAll('.brow').forEach(e=>{e.style.width=w+'px'});
+  if(window.innerWidth>440){document.querySelectorAll('.si').forEach(e=>{e.style.transform='scale(0.3704)'});document.querySelectorAll('.si-sq').forEach(e=>{e.style.transform='scale(0.1852)'});document.querySelectorAll('.sl').forEach(e=>{e.style.width='400px';e.style.height='500px'});document.querySelectorAll('.sl-sq').forEach(e=>{e.style.width='400px';e.style.height='400px'});document.querySelectorAll('.sw').forEach(e=>{e.style.flex='0 0 400px'});document.querySelectorAll('.brow').forEach(e=>{e.style.width='400px'});return;}
+  var w=window.innerWidth-20,s1=w/1080,s2=w/2160;
+  document.querySelectorAll('.si').forEach(e=>{e.style.transform='scale('+s1+')';e.style.transformOrigin='top left'});document.querySelectorAll('.si-sq').forEach(e=>{e.style.transform='scale('+s2+')';e.style.transformOrigin='top left'});document.querySelectorAll('.sl:not(.sl-sq)').forEach(e=>{e.style.width=w+'px';e.style.height=Math.round(w*1.25)+'px'});document.querySelectorAll('.sl-sq').forEach(e=>{e.style.width=w+'px';e.style.height=w+'px'});document.querySelectorAll('.sw').forEach(e=>{e.style.flex='0 0 '+w+'px'});document.querySelectorAll('.brow').forEach(e=>{e.style.width=w+'px'});
 }
 scaleSl();window.addEventListener('resize',scaleSl);
 </script>
