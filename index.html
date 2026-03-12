@@ -3,25 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STRYV — Instagram Content Pack</title>
+<title>STRYV — Hub de Contenido</title>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 20px}
+body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding-top:60px}
 ::selection{background:#4ECDC4;color:#0D1117}
 
+/* ─── NAV ─── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(9,11,14,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(78,205,196,.08);display:flex;align-items:center;gap:0;height:60px;padding:0 24px;overflow-x:auto}
+.nav::-webkit-scrollbar{display:none}
+.nav-brand{font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;letter-spacing:.15em;color:#4ECDC4;text-transform:uppercase;margin-right:28px;white-space:nowrap;flex-shrink:0}
+.nav-tabs{display:flex;gap:2px;flex-shrink:0}
+.nav-tab{font-family:'Geist Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:8px 14px;border-radius:6px;cursor:pointer;color:#555;border:none;background:transparent;transition:all .15s;white-space:nowrap}
+.nav-tab:hover{color:#aaa;background:rgba(255,255,255,.04)}
+.nav-tab.active{color:#4ECDC4;background:rgba(78,205,196,.08);border:1px solid rgba(78,205,196,.15)}
+
+/* ─── VIEWS ─── */
+.view{display:none;padding:40px 20px}
+.view.active{display:block}
+
+/* ─── POSTS SECTION (del pack original) ─── */
 .phd{text-align:center;margin-bottom:56px}
 .phd h1{font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#4ECDC4;margin-bottom:6px;font-family:'Geist Mono',monospace}
 .phd p{font-size:12px;color:#555;line-height:1.7}
 .phd .bg{display:inline-block;background:#4ECDC4;color:#0D1117;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:7px 18px;border-radius:40px;margin-top:12px;font-family:'Geist Mono',monospace}
-
 .sec{margin-bottom:72px}
 .lbl{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#4ECDC4;margin-bottom:4px;font-family:'Geist Mono',monospace}
 .desc{font-size:12px;color:#555;margin-bottom:6px;max-width:540px;line-height:1.6}
 .cap{font-size:11px;color:#666;margin-bottom:18px;max-width:540px;line-height:1.6;font-style:italic}
 .cap b{color:#4ECDC4;font-style:normal}
-
 .car{display:flex;gap:14px;overflow-x:auto;padding-bottom:14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
 .car::-webkit-scrollbar{height:3px}.car::-webkit-scrollbar-track{background:#111}.car::-webkit-scrollbar-thumb{background:#333;border-radius:4px}
 .sw{flex:0 0 400px;scroll-snap-align:start;display:flex;flex-direction:column;gap:7px}
@@ -31,28 +43,21 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 .brow{display:flex;gap:5px;width:400px}
 .db{flex:1;background:#171C24;border:1px solid rgba(78,205,196,.2);border-radius:6px;color:#4ECDC4;font-family:'Geist Mono',monospace;font-size:9px;font-weight:600;letter-spacing:.06em;padding:8px 10px;cursor:pointer;transition:all .15s;text-align:center}
 .db:hover{background:rgba(78,205,196,.08);border-color:#4ECDC4}
-
 .si{width:1080px;height:1350px;transform:scale(0.3704);transform-origin:top left;position:relative;overflow:hidden;font-family:'Geist',sans-serif}
-
 .bg-d{position:absolute;inset:0;background:#0D1117}
-
-/* Image BG */
 .ib{position:absolute;inset:0;z-index:1}
 .ib img{width:100%;height:100%;object-fit:cover}
 .ib::after{content:'';position:absolute;inset:0}
 .ov-bottom .ib::after{background:linear-gradient(180deg,rgba(13,17,23,.35) 0%,rgba(13,17,23,.88) 50%,#0D1117 100%)}
-
 .tx{position:absolute;inset:0;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:150px;z-index:2;pointer-events:none}
 .dg{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(78,205,196,.08) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 70% 55% at 50% 25%,black 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 70% 55% at 50% 25%,black 20%,transparent 70%);z-index:3}
 .gl-tl{position:absolute;top:-80px;left:-80px;width:350px;height:350px;background:radial-gradient(circle,rgba(78,205,196,.1) 0%,transparent 70%);z-index:3;pointer-events:none}
 .gl-br{position:absolute;bottom:-80px;right:-80px;width:350px;height:350px;background:radial-gradient(circle,rgba(78,205,196,.06) 0%,transparent 70%);z-index:3;pointer-events:none}
 .gl-c{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(78,205,196,.12) 0%,transparent 65%);z-index:3;pointer-events:none}
 .wm{position:absolute;bottom:28px;left:0;right:0;text-align:center;font-size:14px;letter-spacing:6px;color:rgba(78,205,196,.08);text-transform:uppercase;font-weight:700;z-index:10;font-family:'Geist Mono',monospace}
-
 .sc{position:relative;z-index:10;padding:100px 88px 88px;height:100%;display:flex;flex-direction:column}
 .sc-c{justify-content:center;align-items:center;text-align:center}
 .sc-e{justify-content:flex-end}
-
 .logo{height:80px;width:200px;display:block;flex-shrink:0}
 .ey{display:inline-flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:20px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#4ECDC4;margin-bottom:44px;width:fit-content}
 .eyd{width:9px;height:9px;border-radius:50%;background:#4ECDC4}
@@ -61,49 +66,124 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 .bd{font-size:34px;font-weight:400;line-height:1.75;color:rgba(234,240,238,.5)}
 .dv{width:56px;height:4px;background:#4ECDC4;border-radius:4px;margin:40px 0;flex-shrink:0}
 .hln{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(78,205,196,.3),transparent);margin:40px 0;flex-shrink:0}
-
 .pl{list-style:none;display:flex;flex-direction:column;gap:30px}
 .pl li{font-size:34px;font-weight:500;color:rgba(234,240,238,.5);padding-left:48px;position:relative;line-height:1.5}
 .pl li::before{content:'✕';position:absolute;left:0;top:1px;color:rgba(255,107,107,.6);font-size:30px;font-weight:700}
 .cl{list-style:none;display:flex;flex-direction:column;gap:30px}
 .cl li{font-size:34px;font-weight:500;color:rgba(234,240,238,.5);padding-left:52px;position:relative;line-height:1.5}
 .cl li::before{content:'✓';position:absolute;left:2px;top:0;color:#4ECDC4;font-size:30px;font-weight:700}
-
 .mc{background:rgba(78,205,196,.04);border:1.5px solid rgba(78,205,196,.1);border-radius:16px;padding:44px 48px;display:flex;flex-direction:column;gap:14px}
 .mc+.mc{margin-top:16px}
 .mcn{font-family:'Geist Mono',monospace;font-size:20px;font-weight:600;color:#4ECDC4;letter-spacing:.08em}
 .mct{font-size:42px;font-weight:800;color:#EAF0EE;letter-spacing:-.03em;line-height:1.15}
 .mcd{font-size:26px;color:rgba(234,240,238,.4);line-height:1.6}
-
 .cta{display:inline-flex;align-items:center;gap:16px;background:#4ECDC4;color:#0D1117;padding:28px 52px;border-radius:12px;font-size:34px;font-weight:700;margin-top:40px;width:fit-content}
-.cta svg{width:28px;height:28px;fill:#0D1117}
 .qt{font-size:58px;font-weight:800;color:#EAF0EE;line-height:1.25;letter-spacing:-.03em}
 .ft{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:32px;border-top:1px solid rgba(78,205,196,.08);flex-shrink:0}
 .ft span{font-family:'Geist Mono',monospace;font-size:18px;color:rgba(234,240,238,.2);letter-spacing:.06em}
 .ft-c{justify-content:center}
-
 [contenteditable="true"]{outline:none;cursor:text;border-radius:3px;transition:box-shadow .2s}
 [contenteditable="true"]:hover{box-shadow:0 0 0 2px rgba(78,205,196,.15)}
 [contenteditable="true"]:focus{box-shadow:0 0 0 2px rgba(78,205,196,.35)}
 
-@media(max-width:440px){body{padding:20px 10px}.car{gap:10px;padding-bottom:10px}.sec{margin-bottom:44px}.cap,.desc{max-width:100%}}
+/* ─── PLAN DE CONTENIDO ─── */
+
+/* Resumen stats */
+.plan-header{text-align:center;margin-bottom:48px;padding:40px 20px 0}
+.plan-header h2{font-family:'Geist Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#4ECDC4;margin-bottom:10px}
+.plan-header h1{font-size:clamp(28px,6vw,52px);font-weight:800;color:#EAF0EE;letter-spacing:-.03em;line-height:1.1;margin-bottom:8px}
+.plan-header p{font-size:12px;color:#555}
+.stats-row{display:flex;justify-content:center;gap:32px;margin-top:28px;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-n{font-family:'Geist Mono',monospace;font-size:28px;font-weight:700;color:#4ECDC4}
+.stat-l{font-size:10px;color:#444;text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+
+/* Filosofía */
+.fil-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:48px;max-width:900px;margin-left:auto;margin-right:auto}
+.fil-card{padding:16px 18px;border:1px solid #1a1a1a;border-radius:8px;background:#0d0d0d;border-left:2px solid #4ECDC4}
+.fil-t{font-family:'Geist Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#4ECDC4;margin-bottom:5px}
+.fil-d{font-size:12px;color:#555;line-height:1.5}
+
+/* Sub-nav pilares */
+.plan-subnav{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:32px;max-width:900px;margin-left:auto;margin-right:auto}
+.plan-subnav::-webkit-scrollbar{display:none}
+.psnav-btn{font-family:'Geist Mono',monospace;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:20px;cursor:pointer;border:1px solid #1e1e1e;background:#0d0d0d;color:#444;transition:all .15s;white-space:nowrap;flex-shrink:0}
+.psnav-btn:hover{color:#aaa;border-color:#333}
+.psnav-btn.active{color:#0D1117;background:var(--pc);border-color:var(--pc)}
+
+/* Pilar panel */
+.pilar-panels{max-width:900px;margin:0 auto}
+.pilar-panel{display:none}
+.pilar-panel.active{display:block}
+
+.pp-head{display:flex;align-items:flex-start;gap:16px;padding:20px 24px;border-radius:10px 10px 0 0;border:1px solid #1a1a1a;border-bottom:none;margin-bottom:0}
+.pp-num{font-family:'Geist Mono',monospace;font-size:10px;font-weight:700;color:var(--pc);letter-spacing:.15em;flex-shrink:0;margin-top:3px}
+.pp-info{flex:1}
+.pp-name{font-size:15px;font-weight:700;color:#EAF0EE;margin-bottom:4px}
+.pp-desc{font-size:12px;color:#555;line-height:1.5}
+.pp-badge{font-family:'Geist Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.1em;padding:4px 10px;border-radius:20px;background:color-mix(in srgb,var(--pc) 12%,transparent);color:var(--pc);border:1px solid color-mix(in srgb,var(--pc) 25%,transparent);white-space:nowrap;flex-shrink:0}
+.new-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ECDC4;margin-left:6px;vertical-align:middle;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+/* Video rows */
+.vr{display:grid;grid-template-columns:44px 1fr auto;gap:12px;padding:12px 24px;border:1px solid #111;border-top:none;align-items:center;transition:background .12s;cursor:default}
+.vr:last-child{border-radius:0 0 10px 10px}
+.vr:hover{background:#0d0d0d}
+.vr-num{font-family:'Geist Mono',monospace;font-size:10px;color:#2a2a2a;font-weight:600}
+.vr-body{}
+.vr-title{font-size:12px;color:#bbb;line-height:1.4}
+.vr-hook{font-size:11px;color:#444;margin-top:2px;font-style:italic;line-height:1.3}
+.vr-fmt{font-family:'Geist Mono',monospace;font-size:9px;padding:3px 8px;border-radius:20px;background:#111;color:#444;border:1px solid #1a1a1a;white-space:nowrap}
+
+/* ─── GUIONES ─── */
+.guion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;max-width:900px;margin:0 auto}
+.guion-card{background:#0d0d0d;border:1px solid #1a1a1a;border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px;border-top:2px solid var(--gc,#4ECDC4);cursor:pointer;transition:border-color .15s,background .15s}
+.guion-card:hover{background:#111;border-color:var(--gc,#4ECDC4)}
+.guion-card.open{background:#111}
+.gc-tag{font-family:'Geist Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gc,#4ECDC4)}
+.gc-title{font-size:14px;font-weight:700;color:#EAF0EE;line-height:1.3}
+.gc-dur{font-size:11px;color:#444}
+.gc-body{font-size:12px;color:#666;line-height:1.7;display:none;padding-top:8px;border-top:1px solid #1a1a1a;white-space:pre-line}
+.guion-card.open .gc-body{display:block}
+.gc-toggle{font-family:'Geist Mono',monospace;font-size:9px;color:#4ECDC4;margin-top:4px}
+
+/* ─── MEDIA QUERIES ─── */
+@media(max-width:440px){
+  .view{padding:24px 10px}
+  .plan-subnav{padding-bottom:6px}
+  .pp-head{padding:14px 14px}
+  .vr{padding:10px 14px;grid-template-columns:32px 1fr auto}
+}
 </style>
 </head>
 <body>
 
-<div class="phd">
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav class="nav">
+  <div class="nav-brand">STRYV</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="switchView('posts')">📸 Posts Instagram</button>
+    <button class="nav-tab" onclick="switchView('plan')">📋 Plan de Contenido</button>
+    <button class="nav-tab" onclick="switchView('guiones')">🎬 Guiones</button>
+  </div>
+</nav>
+
+<!-- ═══════════════ VIEW: POSTS ═══════════════ -->
+<div class="view active" id="view-posts">
+
+<div style="padding:0 20px">
+
+<div class="phd" style="margin-top:20px">
   <h1>STRYV — Instagram Content Pack</h1>
   <p>6 publicaciones · 1080×1350 · Edita textos directo → Descarga PNG</p>
   <div class="bg">✏️ Todo editable + descargable</div>
 </div>
 
-<!-- FOTO DE PERFIL — Instagram -->
+<!-- FOTO DE PERFIL -->
 <div class="sec">
 <div class="lbl">Foto de perfil — Instagram</div>
 <div class="desc">Logo de perfil para Instagram. 2160×2160 HD — sin pixeleo. Dos versiones: oscura y clara.</div>
 <div class="car">
-
-<!-- Versión oscura -->
 <div class="sw">
 <div class="sl sl-sq" id="pfp1"><div class="si-sq">
   <div style="position:absolute;inset:0;background:#0D1117;"></div>
@@ -115,8 +195,6 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 </div></div>
 <div class="brow"><button class="db" onclick="dlSq('pfp1','perfil-ig-oscuro-HD')">⬇ Descargar oscura (2160×2160)</button></div>
 </div>
-
-<!-- Versión clara -->
 <div class="sw">
 <div class="sl sl-sq" id="pfp2"><div class="si-sq">
   <div style="position:absolute;inset:0;background:#EAF0EE;"></div>
@@ -128,13 +206,12 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 </div></div>
 <div class="brow"><button class="db" onclick="dlSq('pfp2','perfil-ig-claro-HD')">⬇ Descargar clara (2160×2160)</button></div>
 </div>
-
 </div></div>
 
-<!-- POST 1 — QUÉ ES STRYV (única con imagen de fondo) -->
+<!-- POST 1 -->
 <div class="sec">
 <div class="lbl">Post 1 — Imagen única</div>
-<div class="desc">Tu carta de presentación. Imagen de sistema sutil de fondo.</div>
+<div class="desc">Tu carta de presentación.</div>
 <div class="cap"><b>Caption:</b> "Construimos el futuro operativo de tu empresa. Sistemas digitales con IA y automatización para que tu negocio funcione sin depender de ti. 🔧⚡"</div>
 <div class="car"><div class="sw">
 <div class="sl" id="p1"><div class="si">
@@ -152,13 +229,12 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 <div class="brow"><button class="db" onclick="dl('p1','post1-stryv')">⬇ Descargar PNG</button></div>
 </div></div></div>
 
-<!-- POST 2 — CARRUSEL (5 slides) -->
+<!-- POST 2 -->
 <div class="sec">
 <div class="lbl">Post 2 — Carrusel (5 slides)</div>
 <div class="desc">Gancho → dolor → frase clave → resultados → CTA.</div>
 <div class="cap"><b>Caption:</b> "Tu negocio funciona. Pero si se para cuando tú paras... necesita sistemas. Desliza para ver qué cambia. 👉"</div>
 <div class="car">
-
 <div class="sw"><div class="sl" id="p2a"><div class="si">
   <div class="bg-d"></div><div class="tx"></div><div class="dg"></div><div class="gl-tl"></div>
   <div class="sc sc-c">
@@ -170,7 +246,6 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 </div></div>
 <div class="brow"><button class="db" onclick="dl('p2a','post2-01-gancho')">⬇ Descargar PNG</button></div>
 </div>
-
 <div class="sw"><div class="sl" id="p2b"><div class="si">
   <div class="bg-d"></div><div class="tx"></div>
   <div class="sc">
@@ -189,7 +264,6 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 </div></div>
 <div class="brow"><button class="db" onclick="dl('p2b','post2-02-dolor')">⬇ Descargar PNG</button></div>
 </div>
-
 <div class="sw"><div class="sl" id="p2c"><div class="si">
   <div class="bg-d"></div><div class="tx"></div><div class="gl-c"></div>
   <div class="sc sc-c" style="padding-top:220px;">
@@ -200,7 +274,6 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 </div></div>
 <div class="brow"><button class="db" onclick="dl('p2c','post2-03-frase')">⬇ Descargar PNG</button></div>
 </div>
-
 <div class="sw"><div class="sl" id="p2d"><div class="si">
   <div class="bg-d"></div><div class="tx"></div><div class="dg"></div>
   <div class="sc">
@@ -220,7 +293,6 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 </div></div>
 <div class="brow"><button class="db" onclick="dl('p2d','post2-04-resultado')">⬇ Descargar PNG</button></div>
 </div>
-
 <div class="sw"><div class="sl" id="p2e"><div class="si">
   <div class="bg-d"></div><div class="tx"></div><div class="gl-tl"></div><div class="gl-br"></div>
   <div class="sc sc-c">
@@ -234,16 +306,14 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 </div></div>
 <div class="brow"><button class="db" onclick="dl('p2e','post2-05-cta')">⬇ Descargar PNG</button></div>
 </div>
-
 </div></div>
 
-<!-- POST 3 — SOLUCIONES (carrusel 3) -->
+<!-- POST 3 -->
 <div class="sec">
 <div class="lbl">Post 3 — Carrusel (3 slides)</div>
 <div class="desc">Qué construimos, en lenguaje simple.</div>
 <div class="cap"><b>Caption:</b> "No somos agencia. No hacemos contenido ni logos. Construimos los sistemas que hacen que tu negocio opere, venda y escale. 🔧"</div>
 <div class="car">
-
 <div class="sw"><div class="sl" id="p3a"><div class="si">
   <div class="bg-d"></div><div class="tx"></div><div class="dg"></div><div class="gl-tl"></div>
   <div class="sc sc-c">
@@ -256,7 +326,6 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 </div></div>
 <div class="brow"><button class="db" onclick="dl('p3a','post3-01-cover')">⬇ Descargar PNG</button></div>
 </div>
-
 <div class="sw"><div class="sl" id="p3b"><div class="si">
   <div class="bg-d"></div><div class="tx"></div>
   <div class="sc">
@@ -269,7 +338,6 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 </div></div>
 <div class="brow"><button class="db" onclick="dl('p3b','post3-02-sol12')">⬇ Descargar PNG</button></div>
 </div>
-
 <div class="sw"><div class="sl" id="p3c"><div class="si">
   <div class="bg-d"></div><div class="tx"></div>
   <div class="sc">
@@ -282,16 +350,14 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 </div></div>
 <div class="brow"><button class="db" onclick="dl('p3c','post3-03-sol34')">⬇ Descargar PNG</button></div>
 </div>
-
 </div></div>
 
-<!-- POST 4 — PARA QUIÉN (carrusel 2) -->
+<!-- POST 4 -->
 <div class="sec">
 <div class="lbl">Post 4 — Carrusel (2 slides)</div>
 <div class="desc">Filtra rápido.</div>
 <div class="cap"><b>Caption:</b> "No es para todos. Y eso está bien. Es para negocios que ya funcionan y quieren escalar con sistemas. ¿Eres tú? Link en bio. 🎯"</div>
 <div class="car">
-
 <div class="sw"><div class="sl" id="p4a"><div class="si">
   <div class="bg-d"></div><div class="tx"></div><div class="dg"></div>
   <div class="sc">
@@ -309,7 +375,6 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 </div></div>
 <div class="brow"><button class="db" onclick="dl('p4a','post4-01-si')">⬇ Descargar PNG</button></div>
 </div>
-
 <div class="sw"><div class="sl" id="p4b"><div class="si">
   <div class="bg-d"></div><div class="tx"></div>
   <div class="sc">
@@ -328,10 +393,9 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 </div></div>
 <div class="brow"><button class="db" onclick="dl('p4b','post4-02-no')">⬇ Descargar PNG</button></div>
 </div>
-
 </div></div>
 
-<!-- POST 5 — FRASE -->
+<!-- POST 5 -->
 <div class="sec">
 <div class="lbl">Post 5 — Imagen única</div>
 <div class="desc">La frase que te diferencia.</div>
@@ -349,7 +413,7 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 <div class="brow"><button class="db" onclick="dl('p5','post5-frase')">⬇ Descargar PNG</button></div>
 </div></div></div>
 
-<!-- POST 6 — CTA -->
+<!-- POST 6 -->
 <div class="sec">
 <div class="lbl">Post 6 — Imagen única</div>
 <div class="desc">Cierre directo.</div>
@@ -370,7 +434,432 @@ body{font-family:'Geist',sans-serif;background:#090b0e;color:#aaa;padding:40px 2
 <div class="brow"><button class="db" onclick="dl('p6','post6-cta')">⬇ Descargar PNG</button></div>
 </div></div></div>
 
+</div><!-- /padding wrapper -->
+</div><!-- /view-posts -->
+
+
+<!-- ═══════════════ VIEW: PLAN ═══════════════ -->
+<div class="view" id="view-plan">
+
+  <div class="plan-header">
+    <h2>STRYV Studio — Estrategia de Contenido</h2>
+    <h1>Plan de 140 Videos</h1>
+    <p>7 pilares · Contenido orgánico · Instagram + TikTok · 2026</p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-n">140</div><div class="stat-l">Videos totales</div></div>
+      <div class="stat"><div class="stat-n">7</div><div class="stat-l">Pilares</div></div>
+      <div class="stat"><div class="stat-n">0%</div><div class="stat-l">Comercial</div></div>
+      <div class="stat"><div class="stat-n">∞</div><div class="stat-l">Valor puro</div></div>
+    </div>
+  </div>
+
+  <!-- Filosofía -->
+  <div style="max-width:900px;margin:0 auto 40px;padding:0 4px">
+    <div style="font-family:'Geist Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#4ECDC4;margin-bottom:14px">Filosofía</div>
+    <div class="fil-grid">
+      <div class="fil-card"><div class="fil-t">Regla #1</div><div class="fil-d">0% comercial. Nunca mencionar STRYV directamente. El contenido vende sin vender.</div></div>
+      <div class="fil-card"><div class="fil-t">Regla #2</div><div class="fil-d">80% valor puro / 20% quién lo da. Tan útil que se guarda aunque nunca contraten.</div></div>
+      <div class="fil-card"><div class="fil-t">Regla #3</div><div class="fil-d">Un problema por video. Específico, concreto, irrebatible. No listas. Profundidad.</div></div>
+      <div class="fil-card"><div class="fil-t">Regla #4</div><div class="fil-d">Evidencia sobre opinión. Datos, casos reales, estudios. El scroll para ante los hechos.</div></div>
+      <div class="fil-card"><div class="fil-t">Regla #5</div><div class="fil-d">Dolor antes de solución. El que no siente el dolor no compra la cura.</div></div>
+      <div class="fil-card"><div class="fil-t">Regla #6</div><div class="fil-d">Lo macro conectado con lo micro. El mundo cambia → tu negocio / tu vida se ve afectado.</div></div>
+    </div>
+  </div>
+
+  <!-- Sub-nav pilares -->
+  <div class="plan-subnav">
+    <button class="psnav-btn active" style="--pc:#ff6b6b" onclick="switchPilar(this,'p01')">01 · Dueño de negocio</button>
+    <button class="psnav-btn" style="--pc:#3b82f6" onclick="switchPilar(this,'p02')">02 · Sistemas</button>
+    <button class="psnav-btn" style="--pc:#10b981" onclick="switchPilar(this,'p03')">03 · Newsjacking</button>
+    <button class="psnav-btn" style="--pc:#a855f7" onclick="switchPilar(this,'p04')">04 · El mundo cambia ●</button>
+    <button class="psnav-btn" style="--pc:#f0a500" onclick="switchPilar(this,'p05')">05 · Dolor social ●</button>
+    <button class="psnav-btn" style="--pc:#ef4444" onclick="switchPilar(this,'p06')">06 · Detrás de cámaras</button>
+    <button class="psnav-btn" style="--pc:#06b6d4" onclick="switchPilar(this,'p07')">07 · Mentalidad</button>
+  </div>
+
+  <!-- Panels -->
+  <div class="pilar-panels">
+
+    <!-- P01 -->
+    <div class="pilar-panel active" id="p01">
+      <div class="pp-head" style="--pc:#ff6b6b">
+        <div class="pp-num">PILAR 01</div>
+        <div class="pp-info">
+          <div class="pp-name">El dueño de negocio que sobrevive pero no escala</div>
+          <div class="pp-desc">Dolores reales, situaciones reconocibles. El negocio que controla al dueño, no al revés.</div>
+        </div>
+        <div class="pp-badge" style="--pc:#ff6b6b">#001–020</div>
+      </div>
+      <div class="vr"><div class="vr-num">#001</div><div class="vr-body"><div class="vr-title">Trabajo más que nunca. Gano menos que nunca.</div><div class="vr-hook">Las palabras del primer cliente que tuve. Tenía clientes, producto y ganas — pero no tenía sistema.</div></div><div class="vr-fmt">Historia</div></div>
+      <div class="vr"><div class="vr-num">#002</div><div class="vr-body"><div class="vr-title">No tienes un negocio. Tienes un trabajo sin jefe y sin descanso.</div><div class="vr-hook">La diferencia entre un negocio y un autoempleo disfrazado.</div></div><div class="vr-fmt">Verdad dura</div></div>
+      <div class="vr"><div class="vr-num">#003</div><div class="vr-body"><div class="vr-title">47 horas. Eso tarda el promedio en responder a un cliente.</div><div class="vr-hook">Harvard midió esto con 15,000 clientes. Si tardas más de 5 minutos, caes 400% en probabilidad de cerrar.</div></div><div class="vr-fmt">Dato</div></div>
+      <div class="vr"><div class="vr-num">#004</div><div class="vr-body"><div class="vr-title">Tu competencia no tiene mejor producto. Solo responde primero.</div><div class="vr-hook">La velocidad de respuesta es la nueva ventaja competitiva — y no requiere más personas.</div></div><div class="vr-fmt">Contraste</div></div>
+      <div class="vr"><div class="vr-num">#005</div><div class="vr-body"><div class="vr-title">Tienes clientes. Tienes producto. El dinero no alcanza.</div><div class="vr-hook">No es el precio ni el mercado. Es que entre el cliente y el cobro hay demasiados pasos que dependen de ti.</div></div><div class="vr-fmt">Diagnóstico</div></div>
+      <div class="vr"><div class="vr-num">#006</div><div class="vr-body"><div class="vr-title">Sobrevivir no es escalar. Sobrevivir es agotarse despacio.</div><div class="vr-hook">Los negocios que sobreviven sin sistema no están estables — están drenando.</div></div><div class="vr-fmt">Dolor</div></div>
+      <div class="vr"><div class="vr-num">#007</div><div class="vr-body"><div class="vr-title">El dueño que no puede irse de vacaciones.</div><div class="vr-hook">No porque no quiera. Porque sabe exactamente lo que pasa si desaparece 10 días.</div></div><div class="vr-fmt">Dolor emocional</div></div>
+      <div class="vr"><div class="vr-num">#008</div><div class="vr-body"><div class="vr-title">El negocio que creció y se rompió.</div><div class="vr-hook">Más clientes sin sistema no es crecimiento. Es caos con más participantes.</div></div><div class="vr-fmt">Historia</div></div>
+      <div class="vr"><div class="vr-num">#009</div><div class="vr-body"><div class="vr-title">Si esa persona se enferma, el negocio se enferma.</div><div class="vr-hook">El riesgo más subestimado de los negocios LATAM: depender de un solo punto de falla humano.</div></div><div class="vr-fmt">Vulnerabilidad</div></div>
+      <div class="vr"><div class="vr-num">#010</div><div class="vr-body"><div class="vr-title">Lo que no pierdes el día que tardas en responder. Pierdes el LTV completo.</div><div class="vr-hook">Un cliente no vale lo que pagó hoy. Vale lo que iba a pagar en 3 años — más sus referidos.</div></div><div class="vr-fmt">Costo real</div></div>
+      <div class="vr"><div class="vr-num">#011</div><div class="vr-body"><div class="vr-title">La trampa del dueño que hace de todo.</div><div class="vr-hook">Atiende, vende, entrega, cobra, resuelve quejas. Y al final del mes se pregunta por qué no avanzó.</div></div><div class="vr-fmt">Trampa</div></div>
+      <div class="vr"><div class="vr-num">#012</div><div class="vr-body"><div class="vr-title">El cliente que no volvió y nunca supiste por qué.</div><div class="vr-hook">Sin seguimiento automatizado, pierdes recompras sin enterarte. El silencio del cliente no es satisfacción.</div></div><div class="vr-fmt">Punto ciego</div></div>
+      <div class="vr"><div class="vr-num">#013</div><div class="vr-body"><div class="vr-title">Contratar más gente no arregla una operación rota.</div><div class="vr-hook">Más personas ejecutando un proceso malo solo multiplica el error más rápido.</div></div><div class="vr-fmt">Mito</div></div>
+      <div class="vr"><div class="vr-num">#014</div><div class="vr-body"><div class="vr-title">Tu negocio a las 11pm un viernes.</div><div class="vr-hook">Alguien te escribe. Nadie responde. El lunes ya compró con otro. Eso pasa cada semana.</div></div><div class="vr-fmt">Escena</div></div>
+      <div class="vr"><div class="vr-num">#015</div><div class="vr-body"><div class="vr-title">El precio de no tener datos de tu propio negocio.</div><div class="vr-hook">¿Cuántos leads entraron este mes? ¿Cuántos cerraron? ¿Cuánto tardó cada uno? Si no sabes, no puedes mejorar.</div></div><div class="vr-fmt">Diagnóstico</div></div>
+      <div class="vr"><div class="vr-num">#016</div><div class="vr-body"><div class="vr-title">El negocio que factura bien pero no genera riqueza.</div><div class="vr-hook">Alta facturación, márgenes bajos, dueño agotado. El problema no es ingresos — es eficiencia operativa.</div></div><div class="vr-fmt">Contraste</div></div>
+      <div class="vr"><div class="vr-num">#017</div><div class="vr-body"><div class="vr-title">Cada vez que cambias de empleado, pierdes el conocimiento del negocio.</div><div class="vr-hook">Si el proceso vive en la cabeza de una persona, no tienes un proceso. Tienes una dependencia.</div></div><div class="vr-fmt">Vulnerabilidad</div></div>
+      <div class="vr"><div class="vr-num">#018</div><div class="vr-body"><div class="vr-title">¿Qué pasaría si desapareces 2 semanas sin avisar?</div><div class="vr-hook">La respuesta honesta revela si tienes un negocio o un empleo donde tú eres el único empleado indispensable.</div></div><div class="vr-fmt">Pregunta</div></div>
+      <div class="vr"><div class="vr-num">#019</div><div class="vr-body"><div class="vr-title">El dueño que sabe todo sobre su producto y nada sobre su operación.</div><div class="vr-hook">Domina el oficio. Desconoce su tasa de conversión, su costo por lead, su tiempo promedio de cierre.</div></div><div class="vr-fmt">Perfil</div></div>
+      <div class="vr"><div class="vr-num">#020</div><div class="vr-body"><div class="vr-title">Después de trabajar con docenas de negocios, el error siempre es el mismo.</div><div class="vr-hook">No es el producto ni el mercado ni la economía. Es que nadie construyó el negocio para funcionar — solo para sobrevivir.</div></div><div class="vr-fmt">Cierre</div></div>
+    </div>
+
+    <!-- P02 -->
+    <div class="pilar-panel" id="p02">
+      <div class="pp-head" style="--pc:#3b82f6">
+        <div class="pp-num">PILAR 02</div>
+        <div class="pp-info">
+          <div class="pp-name">Cómo funcionan los sistemas que liberan negocios</div>
+          <div class="pp-desc">Educación pura. Automatización, IA, procesos. Sin vender. El que entiende esto quiere aplicarlo.</div>
+        </div>
+        <div class="pp-badge" style="--pc:#3b82f6">#021–040</div>
+      </div>
+      <div class="vr"><div class="vr-num">#021</div><div class="vr-body"><div class="vr-title">Un sistema es un proceso que funciona igual sin importar quién lo ejecute.</div><div class="vr-hook">McDonald's no tiene los mejores cocineros del mundo. Tiene el mejor sistema de cocina del mundo.</div></div><div class="vr-fmt">Definición</div></div>
+      <div class="vr"><div class="vr-num">#022</div><div class="vr-body"><div class="vr-title">La diferencia entre herramienta y sistema.</div><div class="vr-hook">Tener WhatsApp Business no es tener un sistema de atención. Tener CRM no es tener proceso de ventas.</div></div><div class="vr-fmt">Distinción</div></div>
+      <div class="vr"><div class="vr-num">#023</div><div class="vr-body"><div class="vr-title">Cómo un mensaje automático bien escrito convierte mejor que un vendedor distraído.</div><div class="vr-hook">No es reemplazar a las personas. Es eliminar los momentos donde las personas fallan por estar ocupadas.</div></div><div class="vr-fmt">Contraste</div></div>
+      <div class="vr"><div class="vr-num">#024</div><div class="vr-body"><div class="vr-title">El flujo completo de una venta sin intervención humana.</div><div class="vr-hook">Lead entra → califica automático → recibe propuesta → paga → recibe confirmación. Todo sin que el dueño toque nada.</div></div><div class="vr-fmt">Flujo</div></div>
+      <div class="vr"><div class="vr-num">#025</div><div class="vr-body"><div class="vr-title">Por qué el CRM más caro no sirve si nadie lo usa.</div><div class="vr-hook">La tecnología sin adopción es decoración. El problema no es la herramienta — es que nadie la integró al flujo real de trabajo.</div></div><div class="vr-fmt">Error común</div></div>
+      <div class="vr"><div class="vr-num">#026</div><div class="vr-body"><div class="vr-title">Lo que hace la IA en atención al cliente que ningún humano puede sostener.</div><div class="vr-hook">Responder a las 3am, sin cansarse, sin días malos, sin olvidar el contexto de la conversación anterior.</div></div><div class="vr-fmt">Capacidad</div></div>
+      <div class="vr"><div class="vr-num">#027</div><div class="vr-body"><div class="vr-title">Los primeros 3 procesos que cualquier negocio debería automatizar.</div><div class="vr-hook">Respuesta a leads, seguimiento post-venta y recordatorios de cobro. Ahí está el 70% del trabajo manual que consume al dueño.</div></div><div class="vr-fmt">Accionable</div></div>
+      <div class="vr"><div class="vr-num">#028</div><div class="vr-body"><div class="vr-title">Qué es un webhook y por qué conecta todo tu negocio sin código.</div><div class="vr-hook">La plomería invisible que hace que tu formulario, tu CRM, tu WhatsApp y tu facturación hablen entre sí.</div></div><div class="vr-fmt">Técnico accesible</div></div>
+      <div class="vr"><div class="vr-num">#029</div><div class="vr-body"><div class="vr-title">Cómo se ve un tablero de operaciones bien armado.</div><div class="vr-hook">El dueño abre una pantalla cada mañana y ve: leads de ayer, ventas cerradas, tickets pendientes, cobros vencidos. En 2 minutos sabe todo.</div></div><div class="vr-fmt">Visualización</div></div>
+      <div class="vr"><div class="vr-num">#030</div><div class="vr-body"><div class="vr-title">La diferencia entre automatizar y sistematizar.</div><div class="vr-hook">Automatizar es hacer que la máquina ejecute. Sistematizar es diseñar el proceso antes de automatizarlo. Hacerlo al revés es el error más caro.</div></div><div class="vr-fmt">Distinción</div></div>
+      <div class="vr"><div class="vr-num">#031</div><div class="vr-body"><div class="vr-title">Por qué los negocios con mejor atención no siempre tienen el mejor equipo.</div><div class="vr-hook">Tienen el mejor protocolo. La consistencia no viene del talento individual — viene del proceso que todos siguen.</div></div><div class="vr-fmt">Insight</div></div>
+      <div class="vr"><div class="vr-num">#032</div><div class="vr-body"><div class="vr-title">Cuánto cuesta realmente no tener sistema de seguimiento.</div><div class="vr-hook">Si tienes 100 leads al mes y cierras 20, los 80 restantes no son pérdidas — son oportunidades sin seguimiento. Eso tiene un número.</div></div><div class="vr-fmt">Costo real</div></div>
+      <div class="vr"><div class="vr-num">#033</div><div class="vr-body"><div class="vr-title">Lo que pasa cuando pones IA en atención al cliente sin preparar el contexto.</div><div class="vr-hook">La IA responde lo que le enseñas. Si no le enseñas nada, responde mal. El error no es la IA — es la implementación.</div></div><div class="vr-fmt">Error común</div></div>
+      <div class="vr"><div class="vr-num">#034</div><div class="vr-body"><div class="vr-title">Cómo medir si tu operación realmente funciona.</div><div class="vr-hook">4 números: tiempo de respuesta a leads, tasa de conversión, tasa de recompra, costo por adquisición. Si no los tienes, estás operando a ciegas.</div></div><div class="vr-fmt">Métricas</div></div>
+      <div class="vr"><div class="vr-num">#035</div><div class="vr-body"><div class="vr-title">El sistema de ventas que funciona dormido.</div><div class="vr-hook">No es magia. Es: lead entra → respuesta inmediata → secuencia de seguimiento → oferta en el momento correcto → cierre. Diseñado una vez.</div></div><div class="vr-fmt">Arquitectura</div></div>
+      <div class="vr"><div class="vr-num">#036</div><div class="vr-body"><div class="vr-title">Por qué la personalización masiva ya es posible sin equipo grande.</div><div class="vr-hook">La IA puede tratar a cada cliente como si fuera el único — con su nombre, su historial, su contexto. Antes eso requería 10 vendedores.</div></div><div class="vr-fmt">Cambio de paradigma</div></div>
+      <div class="vr"><div class="vr-num">#037</div><div class="vr-body"><div class="vr-title">Cómo documentar un proceso para que cualquier persona lo ejecute.</div><div class="vr-hook">Si el proceso no está escrito, solo existe en la memoria de quien lo hace. Y esa persona algún día se va.</div></div><div class="vr-fmt">Accionable</div></div>
+      <div class="vr"><div class="vr-num">#038</div><div class="vr-body"><div class="vr-title">El mapa de operación que todo negocio debería tener antes de crecer.</div><div class="vr-hook">¿Cómo entra un cliente? ¿Cómo se atiende? ¿Cómo se entrega? ¿Cómo se cobra? ¿Cómo vuelve? Si no lo tienes dibujado, no lo tienes.</div></div><div class="vr-fmt">Framework</div></div>
+      <div class="vr"><div class="vr-num">#039</div><div class="vr-body"><div class="vr-title">La inteligencia artificial no reemplaza el criterio del negocio. Lo amplifica.</div><div class="vr-hook">Si el criterio es malo, la IA toma malas decisiones más rápido. Si es bueno, multiplica cada buena decisión.</div></div><div class="vr-fmt">Reflexión</div></div>
+      <div class="vr"><div class="vr-num">#040</div><div class="vr-body"><div class="vr-title">El negocio que no necesita que el dueño esté presente para funcionar.</div><div class="vr-hook">No es el negocio del futuro. Existen hoy. La diferencia es que alguien se tomó el tiempo de construir la operación correcta.</div></div><div class="vr-fmt">Posibilidad</div></div>
+    </div>
+
+    <!-- P03 -->
+    <div class="pilar-panel" id="p03">
+      <div class="pp-head" style="--pc:#10b981">
+        <div class="pp-num">PILAR 03</div>
+        <div class="pp-info">
+          <div class="pp-name">Noticias del mundo conectadas con tu negocio</div>
+          <div class="pp-desc">Newsjacking con datos reales. Lo que pasa afuera tiene consecuencias adentro.</div>
+        </div>
+        <div class="pp-badge" style="--pc:#10b981">#041–060</div>
+      </div>
+      <div class="vr"><div class="vr-num">#041</div><div class="vr-body"><div class="vr-title">Blockbuster rechazó comprar Netflix por $50M en el año 2000.</div><div class="vr-hook">En 2013 cerró para siempre. Netflix hoy vale $400B. No murió por falta de clientes — murió por no ver venir el cambio.</div></div><div class="vr-fmt">Caso histórico</div></div>
+      <div class="vr"><div class="vr-num">#042</div><div class="vr-body"><div class="vr-title">En Colombia cerraron 126,000 empresas en el primer semestre de 2025.</div><div class="vr-hook">138 cierres por cada 100 aperturas. No es mala suerte — es un patrón.</div></div><div class="vr-fmt">Dato LATAM</div></div>
+      <div class="vr"><div class="vr-num">#043</div><div class="vr-body"><div class="vr-title">En Argentina desaparecieron 97,000 negocios en 15 meses.</div><div class="vr-hook">¿Qué tienen en común con Blockbuster? No cerraron por el mercado. Cerraron por la operación.</div></div><div class="vr-fmt">Dato LATAM</div></div>
+      <div class="vr"><div class="vr-num">#044</div><div class="vr-body"><div class="vr-title">El e-commerce en LATAM va a superar $215B en 2026. Crece 1.5x más rápido que el promedio mundial.</div><div class="vr-hook">Y el 70% de los negocios de la región todavía no está digitalizado. Eso no es un problema — es una ventana.</div></div><div class="vr-fmt">Oportunidad</div></div>
+      <div class="vr"><div class="vr-num">#045</div><div class="vr-body"><div class="vr-title">La pandemia cerró negocios que no estaban digitalizados — en semanas.</div><div class="vr-hook">No fue COVID. Fue que sin operación digital, no había forma de seguir. Los que tenían sistema sobrevivieron.</div></div><div class="vr-fmt">Caso reciente</div></div>
+      <div class="vr"><div class="vr-num">#046</div><div class="vr-body"><div class="vr-title">ChatGPT llegó a 1 millón de usuarios en 5 días. Instagram tardó 75 días. Netflix, 3.5 años.</div><div class="vr-hook">La velocidad de adopción de la IA no tiene precedente histórico. El tiempo para adaptarse es más corto que nunca.</div></div><div class="vr-fmt">Dato de velocidad</div></div>
+      <div class="vr"><div class="vr-num">#047</div><div class="vr-body"><div class="vr-title">8 de cada 10 PyMEs mexicanas que digitalizaron sus ventas reportaron aumento de ingresos.</div><div class="vr-hook">No fue el mercado ni la economía. Fue que tomaron la decisión antes que sus competidores.</div></div><div class="vr-fmt">Estadística</div></div>
+      <div class="vr"><div class="vr-num">#048</div><div class="vr-body"><div class="vr-title">Kodak inventó la cámara digital en 1975 y decidió guardarla.</div><div class="vr-hook">Tenían miedo de canibalizar su negocio de rollos. En 2012 quebraron de todas formas — solo que sin ser los dueños del cambio.</div></div><div class="vr-fmt">Caso histórico</div></div>
+      <div class="vr"><div class="vr-num">#049</div><div class="vr-body"><div class="vr-title">México apunta a ser el hub de IA de América Latina.</div><div class="vr-hook">Nvidia, Microsoft y Amazon ya están invirtiendo. Para los negocios locales, eso cambia el terreno de competencia.</div></div><div class="vr-fmt">Noticia</div></div>
+      <div class="vr"><div class="vr-num">#050</div><div class="vr-body"><div class="vr-title">Los medallones de taxi en NYC valían $1M en 2013. En 2017 valían $200K.</div><div class="vr-hook">Uber no llegó de la noche a la mañana. Tardó 6 años. Y aun así, casi nadie lo vio venir a tiempo.</div></div><div class="vr-fmt">Disrupción</div></div>
+      <div class="vr"><div class="vr-num">#051</div><div class="vr-body"><div class="vr-title">El 64% de las organizaciones en el mundo reconoce que si no se digitalizan, pueden desaparecer.</div><div class="vr-hook">¿Y el 36% restante? Todavía está esperando el momento perfecto.</div></div><div class="vr-fmt">Estadística</div></div>
+      <div class="vr"><div class="vr-num">#052</div><div class="vr-body"><div class="vr-title">Nokia tenía el 40% del mercado global de teléfonos en 2007.</div><div class="vr-hook">En 2013 vendió su división de móviles. No perdió por precio ni por distribución — perdió porque no creyó en el smartphone.</div></div><div class="vr-fmt">Caso histórico</div></div>
+      <div class="vr"><div class="vr-num">#053</div><div class="vr-body"><div class="vr-title">Sears tenía catálogo, logística y presencia nacional décadas antes que Amazon.</div><div class="vr-hook">Tenía todo para ser Amazon. Eligió no moverse. En 2018 quebró.</div></div><div class="vr-fmt">Caso histórico</div></div>
+      <div class="vr"><div class="vr-num">#054</div><div class="vr-body"><div class="vr-title">456 millones de personas en LATAM ya tienen smartphone. Para 2030 serán 531 millones.</div><div class="vr-hook">El cliente ya está digital. La pregunta es si tu negocio también lo está.</div></div><div class="vr-fmt">Dato regional</div></div>
+      <div class="vr"><div class="vr-num">#055</div><div class="vr-body"><div class="vr-title">Los primeros negocios en aparecer en Google Maps hoy dominan búsquedas locales.</div><div class="vr-hook">Sus competidores que llegaron tarde llevan años tratando de alcanzarlos. La ventaja del primero no desaparece fácil.</div></div><div class="vr-fmt">Ventaja acumulada</div></div>
+      <div class="vr"><div class="vr-num">#056</div><div class="vr-body"><div class="vr-title">La imprenta de Gutenberg destruyó el trabajo de los copistas en 50 años.</div><div class="vr-hook">La IA está haciendo lo mismo con varias industrias — en 5. La velocidad del cambio es la variable nueva.</div></div><div class="vr-fmt">Historia profunda</div></div>
+      <div class="vr"><div class="vr-num">#057</div><div class="vr-body"><div class="vr-title">Amazon empezó vendiendo libros en 1994. En 2024 facturó $590B.</div><div class="vr-hook">No fue una disrupción repentina. Fue 30 años de construir infraestructura mientras el retail tradicional miraba.</div></div><div class="vr-fmt">Línea de tiempo</div></div>
+      <div class="vr"><div class="vr-num">#058</div><div class="vr-body"><div class="vr-title">MySpace vs Facebook. Yahoo vs Google. BlackBerry vs iPhone.</div><div class="vr-hook">El primero en llegar no siempre gana. El primero en adaptarse cuando el juego cambia, sí.</div></div><div class="vr-fmt">Comparativa</div></div>
+      <div class="vr"><div class="vr-num">#059</div><div class="vr-body"><div class="vr-title">Los negocios que digitalizaron su atención en 2021 hoy tienen lista de espera.</div><div class="vr-hook">Sus competidores que esperaron el "momento correcto" están cerrando. La ventana no espera.</div></div><div class="vr-fmt">Contraste local</div></div>
+      <div class="vr"><div class="vr-num">#060</div><div class="vr-body"><div class="vr-title">Internet → Móvil → Redes sociales → IA. El patrón se repite.</div><div class="vr-hook">En cada ciclo, los que llegaron primero construyeron ventajas que los demás tardaron años en alcanzar. ¿En cuál estamos ahora?</div></div><div class="vr-fmt">Patrón histórico</div></div>
+    </div>
+
+    <!-- P04 — NUEVO -->
+    <div class="pilar-panel" id="p04">
+      <div class="pp-head" style="--pc:#a855f7">
+        <div class="pp-num">PILAR 04 <span class="new-dot"></span></div>
+        <div class="pp-info">
+          <div class="pp-name">Tecnología, adopción temprana y el costo de llegar tarde</div>
+          <div class="pp-desc">Facts duros sobre cómo cada tecnología transformó industrias. Los primeros ganan por años. Los que esperan, pagan el precio.</div>
+        </div>
+        <div class="pp-badge" style="--pc:#a855f7">#061–080</div>
+      </div>
+      <div class="vr"><div class="vr-num">#061</div><div class="vr-body"><div class="vr-title">Los que tuvieron internet primero en su industria ganaron por 10 años</div><div class="vr-hook">"No porque fueran mejores. Sino porque llegaron antes."</div></div><div class="vr-fmt">Adopción</div></div>
+      <div class="vr"><div class="vr-num">#062</div><div class="vr-body"><div class="vr-title">En 1995, tener una página web era "innecesario"</div><div class="vr-hook">"Los que lo creyeron, hoy no existen."</div></div><div class="vr-fmt">Historia tech</div></div>
+      <div class="vr"><div class="vr-num">#063</div><div class="vr-body"><div class="vr-title">El iPhone cumplió 18 años. Los negocios que no se adaptaron, no.</div><div class="vr-hook">"Todo cambió en 18 meses después de ese lanzamiento."</div></div><div class="vr-fmt">Newsjacking</div></div>
+      <div class="vr"><div class="vr-num">#064</div><div class="vr-body"><div class="vr-title">Kodak inventó la cámara digital en 1975 y decidió no lanzarla</div><div class="vr-hook">"¿Cuántas empresas están haciendo eso mismo hoy con la IA?"</div></div><div class="vr-fmt">Caso histórico</div></div>
+      <div class="vr"><div class="vr-num">#065</div><div class="vr-body"><div class="vr-title">Los primeros en poner su negocio en Google Maps dominan su zona hoy</div><div class="vr-hook">"Sus competidores todavía están tratando de alcanzarlos."</div></div><div class="vr-fmt">Dato local</div></div>
+      <div class="vr"><div class="vr-num">#066</div><div class="vr-body"><div class="vr-title">El e-commerce nació en 1994. En 2005 el 90% de los negocios lo ignoraba.</div><div class="vr-hook">"Hoy es el canal que más crece en toda LATAM."</div></div><div class="vr-fmt">Línea de tiempo</div></div>
+      <div class="vr"><div class="vr-num">#067</div><div class="vr-body"><div class="vr-title">Blockbuster vs Netflix: no fue velocidad. Fue negación.</div><div class="vr-hook">"Tenían los recursos para ganar. Eligieron no moverse."</div></div><div class="vr-fmt">Caso histórico</div></div>
+      <div class="vr"><div class="vr-num">#068</div><div class="vr-body"><div class="vr-title">La IA ya lleva 3 años en el mercado. ¿Cuántos negocios la usan de verdad?</div><div class="vr-hook">"El mismo patrón de siempre — y las mismas consecuencias."</div></div><div class="vr-fmt">Hoy</div></div>
+      <div class="vr"><div class="vr-num">#069</div><div class="vr-body"><div class="vr-title">Sears tenía todo para ser Amazon. Tenía catálogo, logística, marca.</div><div class="vr-hook">"Eligió no creer que el mundo iba a cambiar."</div></div><div class="vr-fmt">Caso histórico</div></div>
+      <div class="vr"><div class="vr-num">#070</div><div class="vr-body"><div class="vr-title">Los primeros en usar redes sociales para su negocio tienen hoy audiencias de millones</div><div class="vr-hook">"Sus competidores empezaron en 2020. La diferencia es insuperable."</div></div><div class="vr-fmt">Ventaja acumulada</div></div>
+      <div class="vr"><div class="vr-num">#071</div><div class="vr-body"><div class="vr-title">Nokia era el teléfono más vendido del mundo. Tenía el 40% del mercado.</div><div class="vr-hook">"En 4 años, desapareció."</div></div><div class="vr-fmt">Caso histórico</div></div>
+      <div class="vr"><div class="vr-num">#072</div><div class="vr-body"><div class="vr-title">El patrón que se repite con cada tecnología — y lo que dice sobre la IA</div><div class="vr-hook">"Internet → Móvil → Redes sociales → IA. El ciclo es el mismo."</div></div><div class="vr-fmt">Patrón</div></div>
+      <div class="vr"><div class="vr-num">#073</div><div class="vr-body"><div class="vr-title">Los taxistas que compraron medallones en 2010 por $1M</div><div class="vr-hook">"En 2016 valían $200K. Uber los destruyó en 6 años."</div></div><div class="vr-fmt">Disrupción</div></div>
+      <div class="vr"><div class="vr-num">#074</div><div class="vr-body"><div class="vr-title">¿Cuánto vale adoptar una tecnología 2 años antes que tu competencia?</div><div class="vr-hook">"Los números dicen que la ventaja dura entre 5 y 10 años."</div></div><div class="vr-fmt">Dato</div></div>
+      <div class="vr"><div class="vr-num">#075</div><div class="vr-body"><div class="vr-title">MySpace vs Facebook. Yahoo vs Google. BlackBerry vs iPhone.</div><div class="vr-hook">"El primero en llegar no siempre gana. El primero en adaptarse, sí."</div></div><div class="vr-fmt">Comparativa</div></div>
+      <div class="vr"><div class="vr-num">#076</div><div class="vr-body"><div class="vr-title">La imprenta de Gutenberg destruyó el trabajo de los copistas en 50 años</div><div class="vr-hook">"La IA está haciendo lo mismo — en 5."</div></div><div class="vr-fmt">Historia profunda</div></div>
+      <div class="vr"><div class="vr-num">#077</div><div class="vr-body"><div class="vr-title">El 64% de las empresas ya sabe que si no se digitaliza, desaparece</div><div class="vr-hook">"¿Y el otro 36%? Todavía está esperando el momento perfecto."</div></div><div class="vr-fmt">Estadística</div></div>
+      <div class="vr"><div class="vr-num">#078</div><div class="vr-body"><div class="vr-title">Amazon empezó vendiendo libros. En 30 años reemplazó al retail.</div><div class="vr-hook">"Nadie lo vio venir porque nadie quiso verlo."</div></div><div class="vr-fmt">Caso histórico</div></div>
+      <div class="vr"><div class="vr-num">#079</div><div class="vr-body"><div class="vr-title">El negocio de tu ciudad que digitalizó su atención en 2021</div><div class="vr-hook">"Hoy tiene lista de espera. Sus competidores están cerrando."</div></div><div class="vr-fmt">Local</div></div>
+      <div class="vr"><div class="vr-num">#080</div><div class="vr-body"><div class="vr-title">La pregunta que separa a los negocios que dominan de los que desaparecen</div><div class="vr-hook">"No '¿necesito esto?' sino '¿qué pasa si mi competencia lo adopta primero?'"</div></div><div class="vr-fmt">Mentalidad</div></div>
+    </div>
+
+    <!-- P05 — NUEVO -->
+    <div class="pilar-panel" id="p05">
+      <div class="pp-head" style="--pc:#f0a500">
+        <div class="pp-num">PILAR 05 <span class="new-dot"></span></div>
+        <div class="pp-info">
+          <div class="pp-name">Lo que el mundo le está haciendo a las personas sin que lo noten</div>
+          <div class="pp-desc">Cambios sociales profundos. No procesos de empresa — sino cómo vive, trabaja y se siente la gente. El contenido que genera más guardados y comentarios.</div>
+        </div>
+        <div class="pp-badge" style="--pc:#f0a500">#081–100</div>
+      </div>
+      <div class="vr"><div class="vr-num">#081</div><div class="vr-body"><div class="vr-title">Hay profesiones que van a desaparecer en los próximos 10 años</div><div class="vr-hook">"No es apocalipsis. Es historia. Ya pasó antes. Nadie escuchó entonces tampoco."</div></div><div class="vr-fmt">Futuro del trabajo</div></div>
+      <div class="vr"><div class="vr-num">#082</div><div class="vr-body"><div class="vr-title">La clase media latinoamericana está siendo aplastada desde dos lados</div><div class="vr-hook">"Costos que suben. Sueldos que no. Y una tecnología que no espera."</div></div><div class="vr-fmt">Cambio social</div></div>
+      <div class="vr"><div class="vr-num">#083</div><div class="vr-body"><div class="vr-title">El contrato social del trabajo se rompió. Y nadie lo dijo en voz alta.</div><div class="vr-hook">"Estudia → trabaja → jubílate. Ese modelo ya no existe."</div></div><div class="vr-fmt">Ruptura social</div></div>
+      <div class="vr"><div class="vr-num">#084</div><div class="vr-body"><div class="vr-title">Los jóvenes de hoy van a tener 10 carreras diferentes en su vida</div><div class="vr-hook">"No porque quieran. Porque el mercado los va a obligar."</div></div><div class="vr-fmt">Generacional</div></div>
+      <div class="vr"><div class="vr-num">#085</div><div class="vr-body"><div class="vr-title">La soledad del emprendedor que nadie habla</div><div class="vr-hook">"No es falta de motivación. Es que construiste algo que nadie a tu alrededor entiende."</div></div><div class="vr-fmt">Dolor emocional</div></div>
+      <div class="vr"><div class="vr-num">#086</div><div class="vr-body"><div class="vr-title">El trabajo remoto prometió libertad. Para muchos trajo aislamiento.</div><div class="vr-hook">"Sin oficina, sin ritual, sin comunidad. Solo pantalla."</div></div><div class="vr-fmt">Cambio cultural</div></div>
+      <div class="vr"><div class="vr-num">#087</div><div class="vr-body"><div class="vr-title">La economía gig: libertad para los que tienen habilidades raras. Precariedad para los demás.</div><div class="vr-hook">"No es lo mismo ser freelancer de diseño UX que de delivery."</div></div><div class="vr-fmt">Desigualdad</div></div>
+      <div class="vr"><div class="vr-num">#088</div><div class="vr-body"><div class="vr-title">Hay personas que trabajaron 20 años en una empresa y la IA reemplazó su rol en 18 meses</div><div class="vr-hook">"¿De quién es la responsabilidad?"</div></div><div class="vr-fmt">Impacto humano</div></div>
+      <div class="vr"><div class="vr-num">#089</div><div class="vr-body"><div class="vr-title">El síndrome del impostor en la era digital</div><div class="vr-hook">"Todo el mundo parece ganar millones en LinkedIn. Tú apenas estás sobreviviendo."</div></div><div class="vr-fmt">Psicología social</div></div>
+      <div class="vr"><div class="vr-num">#090</div><div class="vr-body"><div class="vr-title">Lo que perdemos cuando automatizamos demasiado</div><div class="vr-hook">"Eficiencia no es siempre humanidad. Hay un balance que muy pocos hablan."</div></div><div class="vr-fmt">Reflexión</div></div>
+      <div class="vr"><div class="vr-num">#091</div><div class="vr-body"><div class="vr-title">La trampa de la productividad: trabajar más horas para ganar lo mismo</div><div class="vr-hook">"No es un problema de esfuerzo. Es un problema de sistema."</div></div><div class="vr-fmt">Trampa social</div></div>
+      <div class="vr"><div class="vr-num">#092</div><div class="vr-body"><div class="vr-title">Los negocios locales de barrio están desapareciendo. ¿A alguien le importa?</div><div class="vr-hook">"Amazon llegó. Rappi llegó. Y el señor de la ferretería cerró."</div></div><div class="vr-fmt">Economía local</div></div>
+      <div class="vr"><div class="vr-num">#093</div><div class="vr-body"><div class="vr-title">El burnout no es debilidad. Es el resultado de un sistema diseñado para romperte.</div><div class="vr-hook">"Y nadie en tu empresa te lo va a decir."</div></div><div class="vr-fmt">Salud laboral</div></div>
+      <div class="vr"><div class="vr-num">#094</div><div class="vr-body"><div class="vr-title">En 10 años, ¿quién va a tener trabajo seguro?</div><div class="vr-hook">"La respuesta no es la que te enseñaron en la escuela."</div></div><div class="vr-fmt">Futuro</div></div>
+      <div class="vr"><div class="vr-num">#095</div><div class="vr-body"><div class="vr-title">El precio de no tener habilidades digitales en 2026</div><div class="vr-hook">"Ya no es una ventaja tenerlas. Es una desventaja no tenerlas."</div></div><div class="vr-fmt">Brecha digital</div></div>
+      <div class="vr"><div class="vr-num">#096</div><div class="vr-body"><div class="vr-title">La generación que vio a sus papás trabajar toda la vida para una empresa</div><div class="vr-hook">"Y luego los vio quedarse sin pensión. Ese trauma define cómo emprendemos."</div></div><div class="vr-fmt">Generacional</div></div>
+      <div class="vr"><div class="vr-num">#097</div><div class="vr-body"><div class="vr-title">¿Qué le pasa a una ciudad cuando cierran sus negocios pequeños?</div><div class="vr-hook">"No es solo economía. Es identidad. Es comunidad. Es cultura."</div></div><div class="vr-fmt">Impacto social</div></div>
+      <div class="vr"><div class="vr-num">#098</div><div class="vr-body"><div class="vr-title">La paradoja de la información: nunca tuvimos más acceso. Nunca estuvimos más confundidos.</div><div class="vr-hook">"No falta información. Falta criterio para filtrarla."</div></div><div class="vr-fmt">Sociedad digital</div></div>
+      <div class="vr"><div class="vr-num">#099</div><div class="vr-body"><div class="vr-title">Hay una guerra silenciosa por tu atención — y la estás perdiendo</div><div class="vr-hook">"Netflix, TikTok, Instagram. Todos compiten por el mismo recurso: tus horas."</div></div><div class="vr-fmt">Economía de atención</div></div>
+      <div class="vr"><div class="vr-num">#100</div><div class="vr-body"><div class="vr-title">El mundo no te pide permiso para cambiar. Pero sí te da tiempo para decidir.</div><div class="vr-hook">"La pregunta es qué haces con ese tiempo."</div></div><div class="vr-fmt">Cierre filosófico</div></div>
+    </div>
+
+    <!-- P06 -->
+    <div class="pilar-panel" id="p06">
+      <div class="pp-head" style="--pc:#ef4444">
+        <div class="pp-num">PILAR 06</div>
+        <div class="pp-info">
+          <div class="pp-name">Detrás de cámaras — el proceso real</div>
+          <div class="pp-desc">Cómo se construye esto de verdad. Errores reales, decisiones reales, el proceso sin filtro.</div>
+        </div>
+        <div class="pp-badge" style="--pc:#ef4444">#101–115</div>
+      </div>
+      <div class="vr"><div class="vr-num">#101</div><div class="vr-body"><div class="vr-title">Cómo diagnosticamos un negocio antes de tocar nada.</div><div class="vr-hook">Lo primero que hacemos con cualquier cliente nuevo — antes de proponer una sola herramienta.</div></div><div class="vr-fmt">Proceso</div></div>
+      <div class="vr"><div class="vr-num">#102</div><div class="vr-body"><div class="vr-title">El cliente que rechazamos — y por qué.</div><div class="vr-hook">No todo negocio está listo para sistemas. Aceptar uno que no lo está es hacerle daño a los dos.</div></div><div class="vr-fmt">Criterio</div></div>
+      <div class="vr"><div class="vr-num">#103</div><div class="vr-body"><div class="vr-title">El error que cometimos en una implementación y lo que cambió después.</div><div class="vr-hook">Automatizamos un proceso que no estaba documentado. El resultado fue caos automatizado.</div></div><div class="vr-fmt">Error real</div></div>
+      <div class="vr"><div class="vr-num">#104</div><div class="vr-body"><div class="vr-title">Qué pasa la primera semana después de entregar un sistema.</div><div class="vr-hook">La curva de adopción que nadie anticipa. El equipo resiste, el dueño duda, el proceso tambalea — antes de funcionar.</div></div><div class="vr-fmt">Post-entrega</div></div>
+      <div class="vr"><div class="vr-num">#105</div><div class="vr-body"><div class="vr-title">El stack que usamos hoy para operar todo.</div><div class="vr-hook">Sin afiliados. Solo lo que usamos de verdad y por qué cada pieza está ahí.</div></div><div class="vr-fmt">Herramientas</div></div>
+      <div class="vr"><div class="vr-num">#106</div><div class="vr-body"><div class="vr-title">Cuánto tiempo tarda realmente construir un sistema bien hecho.</div><div class="vr-hook">No son 24 horas. No son 6 meses. Y lo que determina la diferencia no es la herramienta — es qué tan claro tiene el dueño su propio negocio.</div></div><div class="vr-fmt">Expectativas</div></div>
+      <div class="vr"><div class="vr-num">#107</div><div class="vr-body"><div class="vr-title">La conversación más difícil con un cliente.</div><div class="vr-hook">Cuando el problema que nos contratan para resolver no es el problema real — y hay que decírselo.</div></div><div class="vr-fmt">Momento real</div></div>
+      <div class="vr"><div class="vr-num">#108</div><div class="vr-body"><div class="vr-title">Cómo se ve un sistema de atención cuando ya funciona de verdad.</div><div class="vr-hook">Pantallazos reales, flujo real, métricas reales. Sin editar para que se vea mejor.</div></div><div class="vr-fmt">Resultado real</div></div>
+      <div class="vr"><div class="vr-num">#109</div><div class="vr-body"><div class="vr-title">Lo que cambia en un negocio cuando el dueño deja de ser el cuello de botella.</div><div class="vr-hook">No es solo tiempo. Es cómo toma decisiones, cómo duerme, qué ve diferente en los números.</div></div><div class="vr-fmt">Transformación</div></div>
+      <div class="vr"><div class="vr-num">#110</div><div class="vr-body"><div class="vr-title">El cliente que no quería automatizar. Lo que lo hizo cambiar de opinión.</div><div class="vr-hook">Resistencia real, conversación real, el momento exacto en que algo hizo clic.</div></div><div class="vr-fmt">Historia de cliente</div></div>
+      <div class="vr"><div class="vr-num">#111</div><div class="vr-body"><div class="vr-title">Cómo aprendemos cuando algo no funciona.</div><div class="vr-hook">El proceso interno de iterar cuando una implementación no da los resultados esperados.</div></div><div class="vr-fmt">Proceso interno</div></div>
+      <div class="vr"><div class="vr-num">#112</div><div class="vr-body"><div class="vr-title">Lo que nadie te dice sobre escalar una agencia de automatización.</div><div class="vr-hook">El problema no es conseguir clientes. Es no convertirte en el cuello de botella de tu propio negocio.</div></div><div class="vr-fmt">Verdad del negocio</div></div>
+      <div class="vr"><div class="vr-num">#113</div><div class="vr-body"><div class="vr-title">La pregunta que le hacemos a todo cliente antes de firmar.</div><div class="vr-hook">Una sola pregunta que define si el proyecto va a funcionar o no. Y cómo respondela cambia todo.</div></div><div class="vr-fmt">Metodología</div></div>
+      <div class="vr"><div class="vr-num">#114</div><div class="vr-body"><div class="vr-title">Qué hacemos cuando el cliente quiere más de lo que el sistema puede dar.</div><div class="vr-hook">La conversación de expectativas que define si la relación se sostiene o se rompe.</div></div><div class="vr-fmt">Gestión de cliente</div></div>
+      <div class="vr"><div class="vr-num">#115</div><div class="vr-body"><div class="vr-title">El momento en que decidimos no seguir haciendo las cosas como las hacíamos.</div><div class="vr-hook">El punto de inflexión que cambió cómo construimos, qué aceptamos y qué cobramos.</div></div><div class="vr-fmt">Pivote real</div></div>
+    </div>
+
+    <!-- P07 -->
+    <div class="pilar-panel" id="p07">
+      <div class="pp-head" style="--pc:#06b6d4">
+        <div class="pp-num">PILAR 07</div>
+        <div class="pp-info">
+          <div class="pp-name">Verdades incómodas sobre negocios y emprender en LATAM</div>
+          <div class="pp-desc">Lo que nadie dice en voz alta. Las creencias que limitan, los mitos que cuestan caro y la filosofía detrás de construir diferente.</div>
+        </div>
+        <div class="pp-badge" style="--pc:#06b6d4">#116–140</div>
+      </div>
+      <div class="vr"><div class="vr-num">#116</div><div class="vr-body"><div class="vr-title">Trabajar duro no es suficiente. Nunca lo fue.</div><div class="vr-hook">El campesino más trabajador del mundo no gana más que quien tiene el mejor sistema de distribución. El esfuerzo sin estructura no escala.</div></div><div class="vr-fmt">Verdad dura</div></div>
+      <div class="vr"><div class="vr-num">#117</div><div class="vr-body"><div class="vr-title">"Cuando esté listo, lo hago" — la frase que más negocios ha matado en LATAM.</div><div class="vr-hook">No hay momento perfecto. El costo de esperar se paga con competencia que no esperó.</div></div><div class="vr-fmt">Mentalidad</div></div>
+      <div class="vr"><div class="vr-num">#118</div><div class="vr-body"><div class="vr-title">La diferencia entre un dueño de negocio y un emprendedor con empleo.</div><div class="vr-hook">Uno construyó algo que funciona sin él. El otro tiene un trabajo disfrazado de independencia.</div></div><div class="vr-fmt">Distinción</div></div>
+      <div class="vr"><div class="vr-num">#119</div><div class="vr-body"><div class="vr-title">Por qué los dueños de negocio en LATAM le temen más a la tecnología que sus competidores en otros mercados.</div><div class="vr-hook">No es ignorancia — es una historia acumulada de promesas que no se cumplieron y dinero que se perdió.</div></div><div class="vr-fmt">Contexto regional</div></div>
+      <div class="vr"><div class="vr-num">#120</div><div class="vr-body"><div class="vr-title">El mito del producto perfecto.</div><div class="vr-hook">Los negocios que esperan tener el producto listo al 100% antes de vender, no llegan a vender. El mercado corrige. El perfeccionismo mata.</div></div><div class="vr-fmt">Mito</div></div>
+      <div class="vr"><div class="vr-num">#121</div><div class="vr-body"><div class="vr-title">Por qué el negocio más rentable no es siempre el más visible.</div><div class="vr-hook">El que hace ruido en redes no siempre es el que más dinero genera. El negocio silencioso con operación limpia gana en el largo plazo.</div></div><div class="vr-fmt">Perspectiva</div></div>
+      <div class="vr"><div class="vr-num">#122</div><div class="vr-body"><div class="vr-title">Lo que los dueños exitosos tienen en común — y no es lo que publican en Instagram.</div><div class="vr-hook">No es la rutina de las 5am ni el mindset de abundancia. Es que alguien construyó su operación antes de crecer.</div></div><div class="vr-fmt">Desmontando narrativas</div></div>
+      <div class="vr"><div class="vr-num">#123</div><div class="vr-body"><div class="vr-title">El costo invisible de no delegar.</div><div class="vr-hook">No es tiempo perdido — es el crecimiento que no ocurrió porque el dueño estaba haciendo lo que alguien más debería hacer.</div></div><div class="vr-fmt">Costo oculto</div></div>
+      <div class="vr"><div class="vr-num">#124</div><div class="vr-body"><div class="vr-title">Hay dos tipos de dueños de negocio: los que construyen activos y los que construyen empleos.</div><div class="vr-hook">Un activo genera sin que estés. Un empleo requiere que sigas ahí. La mayoría confunde los dos.</div></div><div class="vr-fmt">Marco mental</div></div>
+      <div class="vr"><div class="vr-num">#125</div><div class="vr-body"><div class="vr-title">La trampa del crecimiento sin infraestructura.</div><div class="vr-hook">Crecer rápido sin operación construida no es éxito — es acumular deuda operativa que eventualmente explota.</div></div><div class="vr-fmt">Advertencia</div></div>
+      <div class="vr"><div class="vr-num">#126</div><div class="vr-body"><div class="vr-title">Por qué fracasan la mayoría de negocios que "tienen todo para funcionar".</div><div class="vr-hook">Buen producto, mercado real, dueño motivado. Y aun así cierra. El ingrediente faltante siempre es el mismo.</div></div><div class="vr-fmt">Diagnóstico</div></div>
+      <div class="vr"><div class="vr-num">#127</div><div class="vr-body"><div class="vr-title">Lo que separa a los negocios que sobreviven 10 años de los que cierran en 3.</div><div class="vr-hook">No es suerte ni mercado ni economía. Es si alguien se tomó el tiempo de construir la operación correcta.</div></div><div class="vr-fmt">Patrón</div></div>
+      <div class="vr"><div class="vr-num">#128</div><div class="vr-body"><div class="vr-title">El precio real de la improvisación.</div><div class="vr-hook">Cada decisión sin proceso cuesta. No se ve en el día — se ve en los tres años de crecimiento que no ocurrieron.</div></div><div class="vr-fmt">Costo oculto</div></div>
+      <div class="vr"><div class="vr-num">#129</div><div class="vr-body"><div class="vr-title">Emprender en LATAM no es más difícil. Es diferente.</div><div class="vr-hook">Las condiciones son distintas. Las reglas del juego son distintas. Los que aplican frameworks gringos sin adaptarlos, pierden.</div></div><div class="vr-fmt">Contexto</div></div>
+      <div class="vr"><div class="vr-num">#130</div><div class="vr-body"><div class="vr-title">El negocio no crece cuando el dueño no crece.</div><div class="vr-hook">No en motivación — en criterio. En cómo lee los números, cómo toma decisiones, qué tan rápido reconoce que algo no funciona.</div></div><div class="vr-fmt">Filosofía</div></div>
+      <div class="vr"><div class="vr-num">#131</div><div class="vr-body"><div class="vr-title">Por qué la mayoría de "consejos de negocios" en redes no aplican a tu negocio.</div><div class="vr-hook">Fueron diseñados para otro mercado, otra escala, otro contexto. Copiarlos sin entenderlos es el error más común.</div></div><div class="vr-fmt">Pensamiento crítico</div></div>
+      <div class="vr"><div class="vr-num">#132</div><div class="vr-body"><div class="vr-title">Vender más no siempre es la solución.</div><div class="vr-hook">Si tu operación no aguanta el volumen actual, más ventas solo aceleran el colapso. Primero la estructura, después el crecimiento.</div></div><div class="vr-fmt">Contraintuitivo</div></div>
+      <div class="vr"><div class="vr-num">#133</div><div class="vr-body"><div class="vr-title">Lo que nadie te dice cuando empiezas: el negocio más difícil de gestionar eres tú.</div><div class="vr-hook">Los procesos fallan por herramientas el 10% de las veces. El 90% es que quien los diseñó no quiso ver lo que no funcionaba.</div></div><div class="vr-fmt">Verdad incómoda</div></div>
+      <div class="vr"><div class="vr-num">#134</div><div class="vr-body"><div class="vr-title">La diferencia entre un precio bajo y una propuesta de valor débil.</div><div class="vr-hook">Bajar el precio es el camino más rápido al fondo. Fortalecer lo que ofreces es el camino más lento — y el único que funciona.</div></div><div class="vr-fmt">Precio y valor</div></div>
+      <div class="vr"><div class="vr-num">#135</div><div class="vr-body"><div class="vr-title">Los negocios que más admiras probablemente tienen operaciones que nunca verás.</div><div class="vr-hook">La visibilidad es el resultado. La infraestructura es lo que la sostiene. Y esa parte nunca sale en el reel.</div></div><div class="vr-fmt">Perspectiva</div></div>
+      <div class="vr"><div class="vr-num">#136</div><div class="vr-body"><div class="vr-title">Por qué el "no tengo presupuesto" casi siempre significa otra cosa.</div><div class="vr-hook">En la mayoría de casos es "no entendí el valor" o "no confío en el resultado". El precio rara vez es el problema real.</div></div><div class="vr-fmt">Ventas y psicología</div></div>
+      <div class="vr"><div class="vr-num">#137</div><div class="vr-body"><div class="vr-title">Construir lento no es construir mal.</div><div class="vr-hook">La prisa por crecer sin bases es la razón número uno por la que los negocios que arrancan bien terminan quebrando.</div></div><div class="vr-fmt">Filosofía</div></div>
+      <div class="vr"><div class="vr-num">#138</div><div class="vr-body"><div class="vr-title">La mentalidad que separa a los que construyen negocios de los que construyen empleos para sí mismos.</div><div class="vr-hook">No es actitud ni motivación. Es una decisión consciente de diseñar para que el negocio funcione sin depender de una sola persona.</div></div><div class="vr-fmt">Marco mental</div></div>
+      <div class="vr"><div class="vr-num">#139</div><div class="vr-body"><div class="vr-title">Lo que cambia cuando dejas de operar y empiezas a dirigir.</div><div class="vr-hook">Es el salto más difícil para un dueño de negocio. Y también el más importante.</div></div><div class="vr-fmt">Transición</div></div>
+      <div class="vr"><div class="vr-num">#140</div><div class="vr-body"><div class="vr-title">El negocio que quieres tener en 5 años ya existe — en tu operación de hoy.</div><div class="vr-hook">Lo que construyes ahora define el techo de lo que puedes tener después. No el mercado, no la economía. La operación que elegiste construir.</div></div><div class="vr-fmt">Cierre</div></div>
+    </div>
+
+  </div><!-- /pilar-panels -->
+</div><!-- /view-plan -->
+
+
+<!-- ═══════════════ VIEW: GUIONES ═══════════════ -->
+<div class="view" id="view-guiones">
+  <div style="max-width:900px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:36px;padding-top:10px">
+      <div style="font-family:'Geist Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#4ECDC4;margin-bottom:8px">Guiones listos para producir</div>
+      <div style="font-size:22px;font-weight:800;color:#EAF0EE;letter-spacing:-.02em">Biblioteca de Guiones</div>
+      <div style="font-size:12px;color:#444;margin-top:4px">Haz clic en cualquier guión para ver el texto completo</div>
+    </div>
+
+    <div class="guion-grid">
+
+      <div class="guion-card" style="--gc:#ef4444" onclick="this.classList.toggle('open')">
+        <div class="gc-tag">Pilar 03 · Newsjacking · #041</div>
+        <div class="gc-title">Blockbuster — No murió por falta de clientes</div>
+        <div class="gc-dur">~55 seg · Aprobado ✓</div>
+        <div class="gc-body">En el año 2000, Netflix le ofreció a Blockbuster comprar su empresa por 50 millones de dólares.
+
+Blockbuster se rió y los mandó a casa.
+
+13 años después, Blockbuster cerró para siempre.
+Netflix hoy vale 400 mil millones.
+
+Pero esto no es una historia de hace 25 años.
+
+En 2025, por cada 100 empresas que abrieron en Colombia — 138 cerraron.
+En Argentina, 97,000 negocios desaparecieron en 15 meses.
+
+¿Sabes qué tienen en común con Blockbuster?
+
+No cerraron por falta de clientes.
+No cerraron por mala economía.
+No cerraron por mala suerte.
+
+Cerraron porque no vieron venir el cambio.
+
+Y el cambio no avisa.
+
+La pregunta no es si tu industria va a cambiar.
+La pregunta es si tú vas a estar listo cuando pase.</div>
+        <div class="gc-toggle">▾ Ver guión completo</div>
+      </div>
+
+      <div class="guion-card" style="--gc:#3b82f6" onclick="this.classList.toggle('open')">
+        <div class="gc-tag">Pilar 03 · Dato · #003</div>
+        <div class="gc-title">Harvard — 47 horas y el 400%</div>
+        <div class="gc-dur">~45 seg · Aprobado ✓</div>
+        <div class="gc-body">Tu competencia te está robando clientes. Y ni siquiera lo sabes.
+
+No porque tengan mejor producto, sino porque responden primero que tú.
+
+Harvard hizo un estudio con 15,000 clientes y el resultado fue brutal:
+
+Si tardas más de 5 minutos en responder — tus probabilidades de cerrar una venta caen un 400%.
+
+¿Sabes cuánto tarda el promedio de las empresas en responder?
+
+47 horas. Casi dos días de silencio, mientras tu cliente ya le escribió a alguien más.
+
+No necesitas más vendedores.
+Necesitas un sistema que responda por ti, a cualquier hora y en segundos.
+
+Eso es automatización con IA.
+Y es exactamente lo que construimos en STRYV.</div>
+        <div class="gc-toggle">▾ Ver guión completo</div>
+      </div>
+
+      <div class="guion-card" style="--gc:#f0a500" onclick="this.classList.toggle('open')">
+        <div class="gc-tag">Pilar 01 · Historia · #001</div>
+        <div class="gc-title">El negocio que sobrevive pero no escala</div>
+        <div class="gc-dur">~50 seg · Aprobado ✓</div>
+        <div class="gc-body">"Trabajo más que nunca. Gano menos que nunca. Y no sé por qué."
+
+Esas fueron las palabras del primer cliente que tuve.
+Nunca las olvidé.
+
+Tenía clientes. Tenía producto. Tenía ganas.
+No tenía un sistema de ventas — tenía conversaciones sueltas.
+No tenía atención organizada — tenía WhatsApps sin responder.
+No tenía control sobre su negocio — su negocio lo controlaba a él.
+
+Desde entonces, en cada negocio que he tocado, el problema es exactamente ese.
+
+No es el mercado. No es la economía. No es la competencia.
+Es que nadie construyó el negocio para que funcione.
+Solo para que sobreviva.
+
+Sobrevivir no es escalar.
+Sobrevivir es agotarse despacio.
+
+Y en 2026 — si tu negocio sigue dependiendo de ti para cada cosa — no es que estés atrasado.
+Es que ya te estás quedando atrás.
+
+La solución no es trabajar más.
+Es construir la operación correcta — una vez — y dejar que ella trabaje por ti.</div>
+        <div class="gc-toggle">▾ Ver guión completo</div>
+      </div>
+
+      <div class="guion-card" style="--gc:#a855f7" onclick="this.classList.toggle('open')">
+        <div class="gc-tag">Pilar 04 · Oportunidad · #049</div>
+        <div class="gc-title">La ventana de LATAM — El que llega primero gana por años</div>
+        <div class="gc-dur">~58 seg · Aprobado ✓</div>
+        <div class="gc-body">El e-commerce en América Latina va a superar los 215 mil millones de dólares en 2026.
+Crece 1.5 veces más rápido que el promedio mundial.
+456 millones de personas ya tienen smartphone en la región.
+
+Y sin embargo —
+
+Más del 70% de las PyMEs latinoamericanas opera con niveles bajos de digitalización.
+
+Eso no es un problema.
+Eso es una ventana abierta.
+
+Un estudio con miles de pequeñas empresas en México encontró que 8 de cada 10 PyMEs que digitalizaron su proceso de ventas — aumentaron sus ingresos.
+
+No fue magia.
+Fue que llegaron primero.
+
+El 64% de las organizaciones en el mundo ya reconoce esto: si no se digitalizan a tiempo — podrían desaparecer.
+
+En cualquier industria — el que llega primero con un sistema que funciona, no solo gana clientes.
+Construye una ventaja que los demás tardan años en alcanzar.
+
+La ventana está abierta.
+Los números ya lo dicen.
+La pregunta es quién va a entrar.</div>
+        <div class="gc-toggle">▾ Ver guión completo</div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- /view-guiones -->
+
+
 <script>
+/* ─── VIEW SWITCHER ─── */
+function switchView(name){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('view-'+name).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ─── PILAR SWITCHER ─── */
+function switchPilar(btn,id){
+  document.querySelectorAll('.psnav-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.pilar-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+/* ─── DOWNLOAD HELPERS ─── */
 async function toB64(img){
   return new Promise((res)=>{
     if(img.src.startsWith('data:')){res(img.src);return;}
@@ -386,8 +875,7 @@ async function prepClone(clone){
     try{
       const orig=document.querySelector('img[src="'+img.getAttribute('src')+'"]');
       if(orig&&orig.complete&&orig.naturalWidth>0){
-        const b64=await toB64(orig);
-        img.src=b64;
+        const b64=await toB64(orig);img.src=b64;
       }
     }catch(e){}
   }
@@ -418,10 +906,25 @@ async function dlSq(id,name){
   document.body.removeChild(clone);
   btns.forEach(b=>{b.textContent=b.dataset.o;b.disabled=false});
 }
+
+/* ─── SCALE SLIDES ─── */
 function scaleSl(){
-  if(window.innerWidth>440){document.querySelectorAll('.si').forEach(e=>{e.style.transform='scale(0.3704)'});document.querySelectorAll('.si-sq').forEach(e=>{e.style.transform='scale(0.1852)'});document.querySelectorAll('.sl').forEach(e=>{e.style.width='400px';e.style.height='500px'});document.querySelectorAll('.sl-sq').forEach(e=>{e.style.width='400px';e.style.height='400px'});document.querySelectorAll('.sw').forEach(e=>{e.style.flex='0 0 400px'});document.querySelectorAll('.brow').forEach(e=>{e.style.width='400px'});return;}
+  if(window.innerWidth>440){
+    document.querySelectorAll('.si').forEach(e=>{e.style.transform='scale(0.3704)'});
+    document.querySelectorAll('.si-sq').forEach(e=>{e.style.transform='scale(0.1852)'});
+    document.querySelectorAll('.sl').forEach(e=>{e.style.width='400px';e.style.height='500px'});
+    document.querySelectorAll('.sl-sq').forEach(e=>{e.style.width='400px';e.style.height='400px'});
+    document.querySelectorAll('.sw').forEach(e=>{e.style.flex='0 0 400px'});
+    document.querySelectorAll('.brow').forEach(e=>{e.style.width='400px'});
+    return;
+  }
   var w=window.innerWidth-20,s1=w/1080,s2=w/2160;
-  document.querySelectorAll('.si').forEach(e=>{e.style.transform='scale('+s1+')';e.style.transformOrigin='top left'});document.querySelectorAll('.si-sq').forEach(e=>{e.style.transform='scale('+s2+')';e.style.transformOrigin='top left'});document.querySelectorAll('.sl:not(.sl-sq)').forEach(e=>{e.style.width=w+'px';e.style.height=Math.round(w*1.25)+'px'});document.querySelectorAll('.sl-sq').forEach(e=>{e.style.width=w+'px';e.style.height=w+'px'});document.querySelectorAll('.sw').forEach(e=>{e.style.flex='0 0 '+w+'px'});document.querySelectorAll('.brow').forEach(e=>{e.style.width=w+'px'});
+  document.querySelectorAll('.si').forEach(e=>{e.style.transform='scale('+s1+')';e.style.transformOrigin='top left'});
+  document.querySelectorAll('.si-sq').forEach(e=>{e.style.transform='scale('+s2+')';e.style.transformOrigin='top left'});
+  document.querySelectorAll('.sl:not(.sl-sq)').forEach(e=>{e.style.width=w+'px';e.style.height=Math.round(w*1.25)+'px'});
+  document.querySelectorAll('.sl-sq').forEach(e=>{e.style.width=w+'px';e.style.height=w+'px'});
+  document.querySelectorAll('.sw').forEach(e=>{e.style.flex='0 0 '+w+'px'});
+  document.querySelectorAll('.brow').forEach(e=>{e.style.width=w+'px'});
 }
 scaleSl();window.addEventListener('resize',scaleSl);
 </script>
